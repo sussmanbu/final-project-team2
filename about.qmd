@@ -23,6 +23,7 @@ This is a website for the final project for MA[46]15 Data Science with R by Team
 The members of this team are below.
 
 ##Chongjun Shan
+##Carolyn Beigh
 
 <!-- Please leave in the information below -->
 
