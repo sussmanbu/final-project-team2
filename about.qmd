@@ -25,6 +25,7 @@ This is a website for the final project for MA\[46\]15 Data Science with R by Te
 Carolyn is an undergraduate majoring in Marine Science with Biology and Statistics minors.
 
 ### Haotian Wu
+Haotian is an undergraduate double majoring in Pure & Applied Mathematics and Computer Science. 
 
 ### Chen Yang
 
