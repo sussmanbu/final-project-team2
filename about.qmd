@@ -13,16 +13,15 @@ about:
     - icon: github
       text: Github
       href: https://github.com/sussmanbu/
-
 ---
-
 
 This comes from the file `about.qmd`.
 
-This is a website for the final project for MA[46]15 Data Science with R by Team TEAM 2.
-The members of this team are below.
+This is a website for the final project for MA\[46\]15 Data Science with R by Team TEAM 2. The members of this team are below.
 
 ##Chongjun Shan
+
+##Haotian Wu
 
 <!-- Please leave in the information below -->
 
