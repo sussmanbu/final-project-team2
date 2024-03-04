@@ -1,0 +1,55 @@
+---
+title: "Post 1"
+author: "Team 2"
+date: "2024-03-04"
+date-modified: "2024-03-04"
+draft: FALSE
+---
+US Police Fatalities
+
+Original source link, Cleaned data link
+
+The original data has 36 columns and 31,498 rows, including a header. The cleaned data has 12 columns and 12,491 rows, not including a header. The original data was compiled by Fatal Encounters which used media reports and police records to create the database The data includes deaths that happened when police were present or were caused by police. The goal of Fatal Encounters is to create a national database of people killed during interactions that anyone can use for whatever purpose. The cleaned data also lists the Gun Violence Archive and Data Society as sources. 
+Both the Fatal Encounters and the cleaned data are able to be loaded into R without issue. Some obvious questions center around race and whether certain races experience more police fatalities than others. Similar questions can be asked about gender. We might also be interested in how police encounters change overtime, and that might be indicative of changes in police policy or training. Mental health might be another variable to study. There’s been some debate on whether police should be called in response to mental health crises and a closer look at the data might shed some light on that issue. The main challenge would be cleaning the data if we chose to use the original data set. Another challenge would be combining that data with other datasets that might add new perspectives. For example, adding demographic data for cities in the dataset or additional information about police training. 
+
+COVID-19 National Case Surveillance
+
+Source: https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf/about_data
+
+This data set has 104,544,006 rows, 12 columns. This dataset is sourced from database of CDCP, Centers for Disease Control and Prevention, provided by CDC Data, Analytics and Visualization Task Force. 
+The dataset is collected mainly for the tracking purpose of COVID-19 cases, and it includes detailed information of each infected patient, like demographics, any exposure history, disease severity indicators and outcomes, presence of any underlying medical conditions and risk behaviors. The only possible challenge might be the huge sample size.
+
+Main questions to address:
+
+Are there any correlation between COVID-19 cases and geographical differences?
+Which race and aged group are most likely to be infected by COVID-19?
+
+
+
+
+
+USA Unemployment Rates by Demographics & Race
+Origin: https://fred.stlouisfed.org/series/CNP16OV, https://www.epi.org/data/
+cleaned:https://www.kaggle.com/datasets/asaniczka/unemployment-rates-by-demographics-1978-2023
+
+Rows:537, columns: 122
+The data is sourced from the Economic Policy Institute’s State of Working America Data Library and economic research conducted by the Federal Reserve Bank of St. Louis. 
+Questions:
+how unemployment rates have changed for different groups of people over time.
+Look into how education levels can affect unemployment rates.
+Use the data to create visuals that show how unemployment rates differ across all sorts of factors.
+
+
+
+
+
+
+Homicides data over the past decade in 50 US cities
+Original source: https://www.kaggle.com/datasets/joebeachcapital/homicides
+This dataset has 52179 rows and 12 columns. The Washington Post collected data on more than 52,000 criminal homicides over the past decade in 50 of the largest American cities. The data included the location of the killing, whether an arrest was made and, in most cases, basic demographic information about each victim. Reporters received data in many formats, including paper, and worked for months to clean and standardize it, comparing homicide counts and aggregate closure rates with FBI data to ensure the records were as accurate as possible.
+
+On the geographical side, the main question I hope to address would probably be finding the cities that have the highest and lowest homicide rates over the past decade.
+Also I might want to address how homicide rates correlate with other city-specific factors, such as population density, economic indicators, or police force size.
+
+For the data quality and completeness of this dataset, I think some of the challenges would be to verify the accuracy of demographic information and the potential underreporting of certain categories of homicides.
+
