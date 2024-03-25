@@ -11,4 +11,4 @@ We are working with the US Police Fatalities data set. For this post, we
 	
 	Answer all the questions from the data background part and update it to the data page in the website. 
 
-	Write some paragraphs about data equity.(still working on it, so this is not updated)
+	Write some paragraphs about data equity.(still working on it, so this is not updated).
