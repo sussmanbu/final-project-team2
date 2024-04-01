@@ -11,6 +11,7 @@ website:
       - big_picture.qmd
       - analysis.qmd
       - data.qmd
+      - post_1.qmd
 format:
   html:
     theme: cosmo
