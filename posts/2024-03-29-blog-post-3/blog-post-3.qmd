@@ -24,7 +24,7 @@ We thought about 3-4 principles and how they could be relevant to our US Police 
 
 The main aspect of our data principles is the potential for abuse or misuse based on the potential biased narratives in our dataset.
 
-We started to do some data exploration with plots and tables. We also thought about how to construct our data plan and what questions we want to ask of our dataset.
+We started to do some data exploration with plots and tables. It might be interesting if we combined our dataset with another containing more population information for the states. We have a homicide dataset that we might want to add to our police fatality dataset. We also thought about how to construct our data plan and what questions we want to ask of our dataset.
 
 **Exploration**
 ```{r}
