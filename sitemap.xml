@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/data.html</loc>
-    <lastmod>2024-03-29T19:03:08.693Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/analysis.html</loc>
-    <lastmod>2024-03-29T19:03:04.318Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/index.html</loc>
-    <lastmod>2024-03-29T19:03:01.255Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-03-22-post-2-/post-2-.html</loc>
-    <lastmod>2024-03-29T19:02:59.019Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-02-23-test-post/test-post.html</loc>
-    <lastmod>2024-03-29T19:02:57.380Z</lastmod>
-  </url>
-  <url>
     <loc>https://sussmanbu.github.io/final-project-team2/posts/post/post_1.html</loc>
-    <lastmod>2024-03-29T19:02:56.094Z</lastmod>
+    <lastmod>2024-04-01T18:53:50.426Z</lastmod>
   </url>
   <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/posts/2023-10-15-getting-started/getting-started.html</loc>
-    <lastmod>2024-03-29T19:02:54.574Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/posts/2023-10-13-first-team-meeting/first-team-meeting.html</loc>
-    <lastmod>2024-03-29T19:02:55.154Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-03-29-blog-post-3/blog-post-3.html</loc>
-    <lastmod>2024-03-29T19:02:56.767Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sussmanbu.github.io/final-project-team2/posts/2023-12-20-examples/examples.html</loc>
-    <lastmod>2024-03-29T19:02:58.527Z</lastmod>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-03-29-blog-post-2/blog-post-2.html</loc>
+    <lastmod>2024-04-01T18:53:49.209Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-03-04-post-1/post-1.html</loc>
-    <lastmod>2024-03-29T19:02:59.724Z</lastmod>
+    <lastmod>2024-04-01T18:53:48.158Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2023-12-20-examples/examples.html</loc>
+    <lastmod>2024-04-01T18:53:46.991Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2023-10-13-first-team-meeting/first-team-meeting.html</loc>
+    <lastmod>2024-04-01T18:53:45.483Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/data.html</loc>
+    <lastmod>2024-04-01T18:53:43.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/analysis.html</loc>
+    <lastmod>2024-04-01T18:53:38.693Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/final-project-team2/about.html</loc>
-    <lastmod>2024-03-29T19:03:01.844Z</lastmod>
+    <lastmod>2024-04-01T18:53:35.960Z</lastmod>
   </url>
   <url>
     <loc>https://sussmanbu.github.io/final-project-team2/big_picture.html</loc>
-    <lastmod>2024-03-29T19:03:04.815Z</lastmod>
+    <lastmod>2024-04-01T18:53:39.352Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/index.html</loc>
+    <lastmod>2024-04-01T18:53:44.832Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2023-10-15-getting-started/getting-started.html</loc>
+    <lastmod>2024-04-01T18:53:46.138Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-02-23-test-post/test-post.html</loc>
+    <lastmod>2024-04-01T18:53:47.515Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-03-22-post-2-/post-2-.html</loc>
+    <lastmod>2024-04-01T18:53:48.675Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sussmanbu.github.io/final-project-team2/posts/2024-03-29-blog-post-3/blog-post-3.html</loc>
+    <lastmod>2024-04-01T18:53:49.812Z</lastmod>
   </url>
 </urlset>
