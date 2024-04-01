@@ -28,6 +28,7 @@ We started to do some data exploration with plots and tables. It might be intere
 
 **Exploration**
 ```{r}
+library(tidyverse)
 prc |> 
   na.omit() |>  
   ggplot(aes(x = Race, fill = Gender)) + 
