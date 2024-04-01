@@ -26,3 +26,32 @@ The main aspect of our data principles is the potential for abuse or misuse base
 
 We start to do a few data analysis and start thinking about how to construct our data plan 
 
+Below is a plot displaying the average age of police fatalities each year, separated by race.
+
+```{r}
+suppressWarnings({
+library(tidyverse)
+library(lubridate)
+
+police_data_clean <- read_csv(here::here("dataset", "police_fatalities.csv"))
+
+police_fatalities_summary <- police_data_clean %>%
+  mutate(Date = dmy(Date),  
+         Year = year(Date)) %>%  
+  group_by(Year, Race) %>% 
+  summarise(average_age = mean(Age, na.rm = TRUE)) 
+
+police_fatalities_summary %>%
+  ggplot(aes(x = Year, y = average_age, color = Race)) +
+  geom_line() +  
+  geom_point() + 
+  labs(
+    title = "Average Age of Police Fatalities by Year and Race",
+    x = "Year",
+    y = "Average Age"
+  ) +
+  theme_minimal() +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) 
+})
+```
+
