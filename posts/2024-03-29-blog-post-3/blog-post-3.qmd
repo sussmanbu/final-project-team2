@@ -6,3 +6,11 @@ date-modified: "2024-03-29"
 draft: FALSE
 ---
 
+We finished the Data Equity part. 
+
+We thinked about 3-4 principles of how they could be relevant to our US Police Fatalities dataset. These principles help our data set to be used ethically and constructively.
+
+The main aspect of our data principles is the potential for abuse or misuse based on the potential biased narratives in our dataset
+
+We start to do a few data analysis and start thinking about how to construct our data plan 
+
