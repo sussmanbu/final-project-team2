@@ -20,11 +20,25 @@ Principle 4: We also need to mention accountability when we use data in real wor
 
 We finished the Data Equity part. 
 
-We thinked about 3-4 principles of how they could be relevant to our US Police Fatalities dataset. These principles help our data set to be used ethically and constructively.
+We thought about 3-4 principles and how they could be relevant to our US Police Fatalities dataset. These principles help our data set to be used ethically and constructively.
 
-The main aspect of our data principles is the potential for abuse or misuse based on the potential biased narratives in our dataset
+The main aspect of our data principles is the potential for abuse or misuse based on the potential biased narratives in our dataset.
 
-We start to do a few data analysis and start thinking about how to construct our data plan 
+We started to do some data exploration with plots and tables. We also thought about how to construct our data plan and what questions we want to ask of our dataset.
+
+**Exploration**
+```{r}
+prc |> 
+  na.omit() |>  
+  ggplot(aes(x = Race, fill = Gender)) + 
+  geom_bar()
+```
+
+```{r}
+prc |> na.omit() |> group_by(State) |> summarize(n = n()) |> arrange(-n)
+```
+
+
 
 Below is a plot displaying the average age of police fatalities each year, separated by race.
 
