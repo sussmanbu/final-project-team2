@@ -29,6 +29,7 @@ We started to do some data exploration with plots and tables. It might be intere
 **Exploration**
 ```{r}
 library(tidyverse)
+prc <- police_refusal_clean
 prc |> 
   na.omit() |>  
   ggplot(aes(x = Race, fill = Gender)) + 
@@ -38,7 +39,6 @@ prc |>
 ```{r}
 prc |> na.omit() |> group_by(State) |> summarize(n = n()) |> arrange(-n)
 ```
-
 
 
 Below is a plot displaying the average age of police fatalities each year, separated by race.
