@@ -29,7 +29,7 @@ We started to do some data exploration with plots and tables. It might be intere
 **Exploration**
 ```{r}
 library(tidyverse)
-prc <- read_csv(here::here("dataset", "police_refusal_clean.csv"))
+prc <- read_csv("/Users/ccbeigh/Desktop/Data Science in R/final-project-team2/dataset/police_fatalities.csv")
 prc |> 
   na.omit() |>  
   ggplot(aes(x = Race, fill = Gender)) + 
