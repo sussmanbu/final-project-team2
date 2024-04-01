@@ -26,3 +26,17 @@ The main aspect of our data principles is the potential for abuse or misuse base
 
 We start to do a few data analysis and start thinking about how to construct our data plan 
 
+**Exploration**
+```{r}
+prc |> 
+  na.omit() |>  
+  ggplot(aes(x = Race, fill = Gender)) + 
+  geom_bar()
+```
+
+```{r}
+prc |> na.omit() |> group_by(State) |> summarize(n = n()) |> arrange(-n)
+```
+
+
+
