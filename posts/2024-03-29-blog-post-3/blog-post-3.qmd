@@ -4,6 +4,8 @@ author: ""
 date: "2024-03-29"
 date-modified: "2024-03-29"
 draft: FALSE
+editor_options: 
+  chunk_output_type: console
 ---
 **Data for Equity**
 
@@ -29,7 +31,7 @@ We started to do some data exploration with plots and tables. It might be intere
 **Exploration**
 ```{r}
 library(tidyverse)
-prc <- read_csv("/Users/ccbeigh/Desktop/Data Science in R/final-project-team2/dataset/police_fatalities.csv")
+prc <- read_csv("dataset/police_fatalities.csv")
 prc |> 
   na.omit() |>  
   ggplot(aes(x = Race, fill = Gender)) + 
