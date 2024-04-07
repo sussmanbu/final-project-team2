@@ -1,0 +1,57 @@
+---
+title: "blog post 4"
+author: ""
+date: "2024-04-07"
+date-modified: "2024-04-07"
+draft: FALSE
+---
+
+**Impact of Gender on Fatalities in Different States**
+This plot focuses to explore the relationship between gender and fatalities across different states. This could help identify if certain states have more pronounced gender disparities in police-related fatalities.
+
+```{r}
+library(tidyverse)
+
+prc <- read_csv("dataset/police_fatalities.csv")
+
+prc %>%
+  na.omit() %>%
+  count(State, Gender) %>%
+  ggplot(aes(x = reorder(State, n), y = n, fill = Gender)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Police Fatalities by State and Gender",
+       x = "State",
+       y = "Number of Fatalities") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_brewer(palette = "Set2")
+
+```
+**Yearly Trend of Police Fatalities by Race**
+This plot the trend of police fatalities over the years, broken down by race. This can show if certain races have been more affected over time and how the trends have changed.
+```{r}
+library(tidyverse)
+library(lubridate)
+library(readr)
+
+police_data_clean <- read_csv("dataset/police_fatalities.csv")
+
+annual_trends_by_race <- police_data_clean %>%
+  mutate(Date = dmy(Date), Year = year(Date)) %>%
+  drop_na(Year, Race) %>%
+  count(Year, Race) %>%
+  spread(key = Race, value = n, fill = 0) %>%
+  gather(key = 'Race', value = 'Fatalities', -Year)
+
+annual_trends_by_race %>%
+  ggplot(aes(x = Year, y = Fatalities, color = Race)) +
+  geom_line() + 
+  geom_point() + 
+  labs(title = "Yearly Trend of Police Fatalities by Race",
+       x = "Year",
+       y = "Number of Fatalities") +
+  theme_minimal() +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.title = element_blank()) 
+
+
+```
