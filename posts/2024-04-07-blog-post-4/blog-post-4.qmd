@@ -55,3 +55,55 @@ annual_trends_by_race %>%
 
 
 ```
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(broom)
+
+library(nnet)
+
+data <- read.csv("dataset/police_fatalities.csv") %>%
+  mutate(
+    Date = mdy(Date), # Convert to Date format if it's in 'm/d/Y' format
+    Gender = as.factor(Gender),
+    Race = as.factor(Race),
+    Manner_of_death = as.factor(Manner_of_death),
+    Armed = as.factor(Armed),
+    Mental_illness = as.factor(Mental_illness),
+    Flee = as.factor(Flee)
+  )
+
+summary_statistics <- data %>%
+  summarise(
+    Average_Age = mean(Age, na.rm = TRUE),
+    SD_Age = sd(Age, na.rm = TRUE),
+    Count = n()
+  )
+
+age_histogram <- ggplot(data, aes(x = Age)) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black") +
+  theme_minimal() +
+  labs(title = "Distribution of Age", x = "Age", y = "Count")
+
+death_by_demographics <- ggplot(data, aes(x = Race, fill = Gender)) +
+  geom_bar(position = "dodge") +
+  theme_minimal() +
+  labs(title = "Manner of Death by Gender and Race", x = "Race", y = "Count")
+
+logistic_model <- glm(Armed ~ Age + Gender + Race + Mental_illness, 
+                      data = data, family = "binomial")
+logistic_model_summary <- summary(logistic_model)
+
+multinom_model <- multinom(Manner_of_death ~ Age + Gender + Race + Mental_illness, data = data)
+multinom_model_summary <- summary(multinom_model)
+
+logistic_model_table <- tidy(logistic_model)
+
+print(age_histogram)
+print(death_by_demographics)
+print(logistic_model_table)
+```
+
