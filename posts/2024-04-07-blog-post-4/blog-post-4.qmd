@@ -10,9 +10,9 @@ draft: FALSE
 This plot focuses to explore the relationship between gender and fatalities across different states. This could help identify if certain states have more pronounced gender disparities in police-related fatalities.
 
 ```{r}
-library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
 
-prc <- read_csv("dataset/police_fatalities.csv")
+prc <- read_csv("dataset/police_fatalities.csv", show_col_types = FALSE)
 
 prc %>%
   na.omit() %>%
@@ -33,10 +33,10 @@ library(tidyverse)
 library(lubridate)
 library(readr)
 
-police_data_clean <- read_csv("dataset/police_fatalities.csv")
+police_data_clean <- read_csv("dataset/police_fatalities.csv", show_col_types = FALSE)
 
 annual_trends_by_race <- police_data_clean %>%
-  mutate(Date = dmy(Date), Year = year(Date)) %>%
+  mutate(Date = mdy(Date), Year = year(Date)) %>%
   drop_na(Year, Race) %>%
   count(Year, Race) %>%
   spread(key = Race, value = n, fill = 0) %>%
