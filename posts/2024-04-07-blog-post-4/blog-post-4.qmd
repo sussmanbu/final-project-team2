@@ -56,6 +56,9 @@ annual_trends_by_race %>%
 
 ```
 
+Age Histogram: Displays the frequency distribution of individuals' ages involved in the incidents.
+
+Bar Plot of Manner of Death by Gender and Race: Compares the number of incidents by manner of death across different races and genders.
 
 ```{r}
 library(tidyverse)
@@ -67,7 +70,7 @@ library(nnet)
 
 data <- read.csv("dataset/police_fatalities.csv") %>%
   mutate(
-    Date = mdy(Date), # Convert to Date format if it's in 'm/d/Y' format
+    Date = mdy(Date), 
     Gender = as.factor(Gender),
     Race = as.factor(Race),
     Manner_of_death = as.factor(Manner_of_death),
