@@ -8,3 +8,4 @@ date-modified: "2024-04-15"
 draft: FALSE
 ---
 
+We combined police fatalities data set with us cities demographics data set with an R script called combining-data sets. The us cities demographics data set is originally one of the data sets comes from our brain storming in the Post 1 and we consider it is interested to see some interaction between our current data set. In order to make these two data set fit, we pivot the cities demographics data set so that there is only one observation for each city and count for the each races for their own column. Then, we inner join to keep only the data that has a match from each data set with city variable, and rename unnecessary name. Finally, we filter out all the observations with missing Race values as race is the main variable of interest.
