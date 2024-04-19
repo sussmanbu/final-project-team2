@@ -11,7 +11,10 @@ us_dem_wid <- us_dem |>
 
 # inner join to keep only the data that has a match from each dataset, 
 #   remove unnecessary State.y variable and rename State.x to State
-police_dem <- inner_join(us_dem_wid, police_f, by = c("City" = "City", "State.Code" = "State"), relationship = "many-to-many")
+police_dem <- inner_join(us_dem_wid, police_f, by = c("City" = "City", "State.Code" = "State"), relationship = "many-to-many") |>
+  group_by(Name, City, State) |>
+  filter(n() == 1) |>
+  ungroup()
 
 # remove the observations with missing Race values as race is the main variable of interest
 police_dem <- police_dem |> filter(Race != "")
