@@ -10,7 +10,6 @@ us_dem_wid <- us_dem |>
   pivot_wider(names_from = "Race", values_from = "Count")
 
 # inner join to keep only the data that has a match from each dataset, 
-#   remove unnecessary State.y variable and rename State.x to State
 police_dem <- inner_join(us_dem_wid, police_f, by = c("City" = "City", "State.Code" = "State"), relationship = "many-to-many") |>
   group_by(Name, City, State) |>
   filter(n() == 1) |>
