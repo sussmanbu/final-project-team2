@@ -6,11 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Daniel Sussman">
-<meta name="dcterms.date" content="2024-02-23">
-<meta name="description" content="Directions to set up your website and create your first post.">
+<meta name="author" content="team2">
 
-<title>MA [46]15 Final Project TEAM 2 - Getting started</title>
+<title>MA [46]15 Final Project TEAM 2 - first blog post</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,6 +98,8 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../data.html" rel="" target="">
  <span class="menu-text">Data</span></a>
   </li>  
+  <li class="dropdown-header">
+ <span class="menu-text">post_1.qmd</span></li>
 </ul>
             <div class="quarto-navbar-tools">
 </div>
@@ -111,13 +111,8 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Getting started</h1>
-                  <div>
-        <div class="description">
-          <p>Directions to set up your website and create your first post.</p>
-        </div>
-      </div>
-                </div>
+      <h1 class="title">first blog post</h1>
+                      </div>
   </div>
     
   
@@ -126,23 +121,11 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Daniel Sussman </p>
+               <p>team2 </p>
             </div>
     </div>
       
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">February 23, 2024</p>
-      </div>
-    </div>
     
-      <div>
-      <div class="quarto-title-meta-heading">Modified</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date-modified">February 23, 2024</p>
-      </div>
-    </div>
       
     </div>
     
@@ -157,51 +140,36 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Below, the items marked with <strong>[[OP]]</strong> should only be done by one person on the team.</p>
-<section id="to-get-started" class="level3">
-<h3 class="anchored" data-anchor-id="to-get-started">To get started</h3>
+<p><strong>US Police Fatalities</strong></p>
+<p><a href="https://fatalencounters.org/">Original source link</a>, <a href="https://data.world/awram/us-police-involved-fatalities">Cleaned data link</a></p>
+<p>The original data has 36 columns and 31,498 rows, including a header. The cleaned data has 12 columns and 12,491 rows, not including a header. The original data was compiled by Fatal Encounters which used media reports and police records to create the database The data includes deaths that happened when police were present or were caused by police. The goal of Fatal Encounters is to create a national database of people killed during interactions that anyone can use for whatever purpose. The cleaned data also lists the Gun Violence Archive and Data Society as sources. Both the Fatal Encounters and the cleaned data are able to be loaded into R without issue. Some obvious questions center around race and whether certain races experience more police fatalities than others. Similar questions can be asked about gender. We might also be interested in how police encounters change overtime, and that might be indicative of changes in police policy or training. Mental health might be another variable to study. There’s been some debate on whether police should be called in response to mental health crises and a closer look at the data might shed some light on that issue. The main challenge would be cleaning the data if we chose to use the original data set. Another challenge would be combining that data with other datasets that might add new perspectives. For example, adding demographic data for cities in the dataset or additional information about police training.&nbsp;</p>
+<section id="covid-19-national-case-surveillance" class="level2">
+<h2 class="anchored" data-anchor-id="covid-19-national-case-surveillance"><strong>COVID-19 National Case Surveillance</strong></h2>
+<p>Source: <a href="https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf/about_data" class="uri">https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf/about_data</a></p>
+<p>This data set has 104,544,006 rows, 12 columns. This dataset is sourced from database of CDCP, Centers for Disease Control and Prevention, provided by CDC Data, Analytics and Visualization Task Force.&nbsp;</p>
+<p>The dataset is collected mainly for the tracking purpose of COVID-19 cases, and it includes detailed information of each infected patient, like demographics, any exposure history, disease severity indicators and outcomes, presence of any underlying medical conditions and risk behaviors. The only possible challenge might be the huge sample size.</p>
+<p>Main questions to address:</p>
 <ol type="1">
-<li><strong>[[OP]]</strong> One person from the team should click the Github Classroom link on Teams.</li>
-<li><strong>[[OP]]</strong> That person types in the group name for their group.</li>
-<li>The rest of the team now clicks the Github Classroom link and selects their team from the dropdown list.</li>
-<li>Finally, each of you can clone the repository to your laptop like a normal assignment.</li>
+<li><p>Are there any correlation between COVID-19 cases and geographical differences?</p></li>
+<li><p>Which race and aged group are most likely to be infected by COVID-19?</p></li>
 </ol>
 </section>
-<section id="setting-up-the-site" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-the-site">Setting up the site</h3>
-<ol type="1">
-<li><strong>[[OP]]</strong> Open the terminal and run <code>quarto publish gh-pages</code>.</li>
-<li><strong>[[OP]]</strong> Select <code>Yes</code> to the prompt: <br> <code>? Publish site to https://sussmanbu.github.io/ma4615-fa23-final-project-TEAMNAME/ using gh-pages? (Y/n)</code></li>
-<li><strong>[[OP]]</strong> Wait for the process to finish.</li>
-<li>Once it is done, you can go to the URL it asked you about to see your site.</li>
-</ol>
-<p><strong>Note</strong>: This is the process you will use every time you want to update your published site. Make sure to always follow the steps below for rendering, previewing, and committing your changes before doing these publish steps. Anyone can publish in the future.</p>
-</section>
-<section id="customize-your-site" class="level3">
-<h3 class="anchored" data-anchor-id="customize-your-site">Customize your site</h3>
-<ol type="1">
-<li><strong>[[OP]]</strong> Open the <code>_quarto.yml</code> file and update the title to include your team name.</li>
-<li><strong>[[OP]]</strong> Go to the <code>about.qmd</code> and remove the TF’s and professor’s names.</li>
-<li>add your own along with a short introduction and a link to your Github user page.</li>
-<li><strong>[[OP]]</strong> Render the site.</li>
-<li><strong>[[OP]]</strong> Check and make sure you didn’t get any errors.</li>
-<li><strong>[[OP]]</strong> Commit your changes and push.</li>
-<li><strong>[[OP]]</strong> Repeat the steps under Setting up your site.</li>
-</ol>
-<p>Once one person is done with this, each teammate in the group can, in turn, repeat steps 3-7. Before doing so, make sure to <code>pull</code> the changes from teammates before starting to make new changes. (We’ll talk soon about ways to organize your work and resolve conflicts.)</p>
-</section>
-<section id="start-your-first-post" class="level3">
-<h3 class="anchored" data-anchor-id="start-your-first-post">Start your first post</h3>
-<ol type="1">
-<li>To start your first post first, run <code>remotes::install_github("sussmanbu/quartopost")</code> in your Console.</li>
-<li><strong>[[OP]]</strong> Run <code>quartopost::quartopost()</code> (or click Addins-&gt;Create Quarto Post, or use C-Shift-P, type “Create Quarto” and press enter to run the command).</li>
-</ol>
-<p>Now you can start working on your post. You’ll want to render your post to see what it will look like on the site.</p>
-<ul>
-<li>Every time you want to <strong>make a new post</strong>, you can repeat step 2 above.</li>
-<li>When you want to <strong>publish your progress</strong>, follow steps 4-7 from Customize your site.</li>
-</ul>
-<p>Finally, make sure to read through everything on <a href="https://sussmanbu.github.io/ma4615-final-project-quarto">this site</a> which has the directions and rubric for the final project.</p>
+<section id="usa-unemployment-rates-by-demographics-race" class="level1">
+<h1><strong>USA Unemployment Rates by Demographics &amp; Race</strong></h1>
+<p>Origin: <a href="https://fred.stlouisfed.org/series/CNP16OV" class="uri">https://fred.stlouisfed.org/series/CNP16OV</a>, <a href="https://www.epi.org/data/" class="uri">https://www.epi.org/data/</a></p>
+<p>cleaned:<a href="https://www.kaggle.com/datasets/asaniczka/unemployment-rates-by-demographics-1978-2023" class="uri">https://www.kaggle.com/datasets/asaniczka/unemployment-rates-by-demographics-1978-2023</a></p>
+<p>Rows:537, columns: 122</p>
+<p>The data is sourced from the Economic Policy Institute’s State of Working America Data Library and economic research conducted by the Federal Reserve Bank of St.&nbsp;Louis.&nbsp;</p>
+<p>Questions:</p>
+<p>how unemployment rates have changed for different groups of people over time.</p>
+<p>Look into how education levels can affect unemployment rates.</p>
+<p>Use the data to create visuals that show how unemployment rates differ across all sorts of factors.</p>
+<p><strong>Homicides data over the past decade in 50 US cities</strong></p>
+<p>Original source: <a href="https://www.kaggle.com/datasets/joebeachcapital/homicides" class="uri">https://www.kaggle.com/datasets/joebeachcapital/homicides</a></p>
+<p>This dataset has 52179 rows and 12 columns. The Washington Post collected data on more than 52,000 criminal homicides over the past decade in 50 of the largest American cities. The data included the location of the killing, whether an arrest was made and, in most cases, basic demographic information about each victim. Reporters received data in many formats, including paper, and worked for months to clean and standardize it, comparing homicide counts and aggregate closure rates with FBI data to ensure the records were as accurate as possible.</p>
+<p>On the geographical side, the main question I hope to address would probably be finding the cities that have the highest and lowest homicide rates over the past decade.</p>
+<p>Also I might want to address how homicide rates correlate with other city-specific factors, such as population density, economic indicators, or police force size.</p>
+<p>For the data quality and completeness of this dataset, I think some of the challenges would be to verify the accuracy of demographic information and the potential underreporting of certain categories of homicides.</p>
 
 
 </section>
