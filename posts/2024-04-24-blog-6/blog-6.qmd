@@ -1,0 +1,15 @@
+---
+title: "blog 6"
+author: ""
+date: "2024-04-24"
+date-modified: "2024-04-24"
+draft: FALSE
+---
+
+We further cleaned our data since we found that there are repeated police filing for the same event, which caused our dataset to have overlapped individual records but different details. Since we cannot confirm which filing is more accurate, we decided to remove all the data that has repeated filing. Looking at our combined dataset with the demographic information of each city, we thought about calculating the mortality rate of each race in each city, and even the cities that have abnormal rates compared to the “general pattern”. 
+
+Our thesis statement is:
+
+Race disparity contributes to a great factor of the demographics of police-related fatalities.
+
+Race Black has the highest mortality rate among all the cities on average.
