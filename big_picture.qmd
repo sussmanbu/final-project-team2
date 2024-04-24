@@ -27,17 +27,33 @@ By examining the numbers, we seek to understand not only the scope of the dispar
 ## Racial Breakdown in Police Fatalities:
 
 ```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(ggplot2))
+
+source("combining-datasets.R")
+
 police_race_counts <- table(police_f$Race)
 police_race_prop <- prop.table(police_race_counts)
 
-total_pop <- sum(us_dem$population)
-us_race_prop <- tapply(us_dem$Total.Population, us_dem$race, sum) / total_pop
+total_pop <- sum(us_dem$Count)
+us_race_prop <- tapply(us_dem$Count, us_dem$Race, sum) / total_pop
+
+plot_data <- data.frame(
+  Race = rep(names(us_race_prop), 2),
+  Proportion = c(us_race_prop, police_race_prop),
+  Type = rep(c("General Population", "Police Fatalities"), each = length(us_race_prop))
+)
+
+ggplot(plot_data, aes(x = Race, y = Proportion, fill = Type)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Racial Breakdown in Police Fatalities vs. General Population",
+       x = "Race",
+       y = "Proportion",
+       fill = "Dataset") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-On a windy fall evening in Minneapolis, Minnesota in 2021, a community gathered, candles in hand, and their faces revealed their pain.
-They were not just mourning for a loss, but also protesting for a pattern.
-Among them was one old lady, who held a placard in hand that read, 'Justice for Daunte.' Daunte Wright, a 20-year-old young Black man, had been stopped and shot by the police during a traffic violation earlier this month.
-The officer involved resigned and was charged with second-degree manslaughter pending investigation, but to those gathered, this was a familiar end to a grievously familiar story.
 
 ------------------------------------------------------------------------
 

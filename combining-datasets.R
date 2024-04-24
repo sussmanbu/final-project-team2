@@ -3,14 +3,13 @@ suppressPackageStartupMessages(library(tidyverse))
 police_f <- read.csv(here::here("dataset", "police_fatalities.csv"))
 
 police_f <- police_f |>
-  filter(Race != "" & !is.na(Race)) |>
+  filter(Race != "" & Race != "Other" & !is.na(Race)) |>
   mutate(Race = recode(Race,
                        "Black" = "Black or African-American",
                        "White" = "White",
                        "Hispanic" = "Hispanic or Latino",
                        "Asian" = "Asian",
-                       "Native" = "American Indian and Alaska Native",
-                       "Other" = "Other"))
+                       "Native" = "American Indian and Alaska Native"))
 
 us_dem <- read.csv(here::here("dataset", "us_cities_demographics.csv"), sep=";")
 
