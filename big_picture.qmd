@@ -24,7 +24,7 @@ By examining the numbers, we seek to understand not only the scope of the dispar
 
 ------------------------------------------------------------------------
 
-## Racial Breakdown in Police Fatalities:
+## Visualization: Racial Breakdown in Police Fatalities:
 
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
@@ -51,9 +51,66 @@ ggplot(plot_data, aes(x = Race, y = Proportion, fill = Type)) +
        y = "Proportion",
        fill = "Dataset") +
   theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
 ```
 
+This bar chart provides a stark visual comparison between the racial composition of police-related fatalities and the general population. The proportional representation of different racial groups in fatal encounters with law enforcement is measured against their proportion in the general U.S. population. The bars in red represent the general population percentages, while the blue bars represent those of police fatalities.
+
+From a glance, it is evident that certain groups appear more frequently in police fatality statistics than would be expected from their numbers in the general population. The discrepancy is particularly notable among Black or African-American individuals, whose representation in fatalities is substantially higher than in the population at large. This contrast suggests a troubling disparity that warrants a deeper investigation into the causes and conditions that lead to such a disproportionate impact. 
+
+------------------------------------------------------------------------
+
+## Dissecting Disparities
+
+The implications of this visualization are profound. They highlight a need to examine not only the interactions leading to these fatal outcomes but also the broader systemic issues at play. Such disparities may stem from a complex interplay of socioeconomic factors, biases within law enforcement, and the lived realities of racialized communities.
+
+Understanding the 'why' behind these numbers is crucial. It beckons policymakers, social scientists, and community leaders to grapple with uncomfortable questions about equity, justice, and the role of policing in society. As we embark on this analytical journey, the data becomes more than just numbers; it becomes a narrative of lives affected and a roadmap for potential reform.
+
+This plot serves as the opening chapter in our broader analysis, a quantifiable backdrop against which we'll explore individual stories, regional specifics, and temporal shifts. It's a visualization that doesn't just inform but also challenges us to seek explanations and solutions for a more equitable future.
+
+```{r}
+library(maps)
+library(mapdata)
+
+# Calculate the number of Black or African-American fatalities by state
+black_fatalities_by_state <- police_f %>%
+  filter(Race == "Black" | Race == "Black or African-American") %>%
+  group_by(State) %>%
+  summarise(BlackCount = n(), .groups = 'drop')
+
+# Calculate the total number of fatalities by state
+total_fatalities_by_state <- police_f %>%
+  group_by(State) %>%
+  summarise(TotalCount = n(), .groups = 'drop')
+
+# Combine the counts to calculate the proportion
+proportions_by_state <- merge(black_fatalities_by_state, total_fatalities_by_state, by = "State")
+
+# Calculate the proportion of Black or African-American fatalities by state
+proportions_by_state$BlackProportion <- proportions_by_state$BlackCount / proportions_by_state$TotalCount
+
+# Get the US states map data and ensure the region names are in lowercase
+states_map <- map_data("state")
+states_map$region <- tolower(states_map$region)
+
+# Create a lookup table to convert state abbreviations to full names in lowercase
+state_abb_to_name <- data.frame(abb = state.abb, full_name = tolower(state.name))
+
+# Merge the proportions data with the lookup table to get the full state names
+proportions_by_state <- merge(proportions_by_state, state_abb_to_name, by.x = "State", by.y = "abb")
+
+# Merge the map data with the fatality proportions
+map_data_merged <- merge(states_map, proportions_by_state, by.x = "region", by.y = "full_name", all.x = TRUE)
+
+# Plot the heatmap
+ggplot(map_data_merged, aes(x = long, y = lat, group = group, fill = BlackProportion)) +
+  geom_polygon(color = "white", aes(group = group)) +
+  scale_fill_gradient(low = "white", high = "red", name = "Proportion of Fatalities") +
+  labs(title = "Proportion of Black or African-American Police Fatalities by State") +
+  theme_void() +
+  theme(legend.position = "bottom")
+
+```
 
 ------------------------------------------------------------------------
 
