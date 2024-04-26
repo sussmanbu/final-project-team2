@@ -7,3 +7,79 @@ date: "2024-04-24"
 date-modified: "2024-04-24"
 draft: FALSE
 ---
+```{r}
+
+source("combining-datasets.R")
+library(dplyr)
+library(tibble)  # For more robust data frame operations
+
+# Assuming police_dem is already loaded in your R environment
+
+# Calculating total deaths and racial composition percentages
+death_counts <- police_dem %>%
+  group_by(State, City) %>%
+  summarize(
+    TotalDeaths = n(),  # Count of deaths
+    .groups = 'drop'  # Drop grouping structure after summarizing
+  )
+
+racial_composition <- police_dem %>%
+  group_by(State, City, Race) %>%
+  summarize(
+    Count = n(),
+    .groups = 'drop'
+  ) %>%
+  group_by(State, City) %>%
+  mutate(
+    Percentage = Count / sum(Count) * 100
+  )
+
+# Calculate discrepancies (Example: comparing racial percentages with total deaths)
+discrepancies <- racial_composition %>%
+  left_join(death_counts, by = c("State", "City")) %>%
+  mutate(
+    Discrepancy = abs(Percentage - (TotalDeaths / sum(TotalDeaths) * 100))
+  ) %>%
+  arrange(desc(Discrepancy))
+
+# Identify and display locations with the highest discrepancies
+top_discrepancies <- discrepancies %>%
+  top_n(1, Discrepancy)
+
+print(top_discrepancies)
+
+
+```
+
+```{r}
+
+library(dplyr)
+
+# Assuming police_dem is already loaded in your R environment
+
+# Calculating total deaths for each race
+racial_composition <- police_dem %>%
+  group_by(Race) %>%
+  summarize(
+    TotalDeaths = n(),  # Count of deaths per race
+    .groups = 'drop'  # Drop grouping structure after summarizing
+  )
+
+# Calculate the death rate for each race
+racial_composition <- racial_composition %>%
+  mutate(
+    DeathRate = TotalDeaths / sum(TotalDeaths) * 100  # Convert to percentage
+  ) %>%
+  arrange(desc(DeathRate))
+
+# Display the death rates for all races
+print(racial_composition)
+
+# Identify and display the race with the highest death rate
+highest_death_rate_race <- racial_composition %>%
+  slice_max(DeathRate, n = 1)  # Get the race with the highest death rate
+
+print(highest_death_rate_race)
+
+```
+
