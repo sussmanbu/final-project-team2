@@ -19,6 +19,8 @@ This is a website for the final project for MA\[46\]15 Data Science with R by Te
 
 ### Chongjun Shan
 
+Chongjun is an undergraduate majoring in Computer Science.
+
 ### Carolyn Beigh
 
 Carolyn is an undergraduate majoring in Marine Science with Biology and Statistics minors.
@@ -33,6 +35,3 @@ Chen is a graduate MA from economic department.
 
 <!-- Please leave in the information below -->
 
-### About this Template.
-
-This is based off of the standard Quarto website template from RStudio (2023.09.0 Build 463).
