@@ -122,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./big_picture.html" rel="" target="">
- <span class="menu-text">Big Picture</span></a>
+ <span class="menu-text">Behind the Numbers: How Racial Disparities Define Police-Related Fatalities</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html" rel="" target="">
@@ -300,9 +300,196 @@ dbl (4): min, white, himin, hiwhite
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <section id="police-fatality-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="police-fatality-dataset">Police Fatality Dataset</h3>
-<p>The source of the original dataset is <a href="https://fatalencounters.org/">Fatal Encounters</a>, a blog created by Dr.&nbsp;Brian Burghart, a journalist and part-time researcher for the University of Southern California. Dr.&nbsp;Burghart and his associates compiled media reports and police records to create the database. The data represents deaths that happened when police were present or were caused by police. The goal of Fatal Encounters is to create a national database of people killed during interactions that anyone can use for whatever purpose. This dataset has 36 variables, including location, date, descriptors of the deceased such as race and age, and other information surrounding the fatalities.&nbsp;</p>
+<p>The source of the original dataset is Fatal Encounters, a blog created by Dr.&nbsp;Brian Burghart, a journalist and part-time researcher for the University of Southern California. Dr.&nbsp;Burghart and his associates compiled media reports and police records to create the database. The data represents deaths that occurred when police were present or were caused by police, including “on-duty, off-duty, criminal, line-of-duty, local, federal, intentional, [and] accidental.” The goal of Fatal Encounters is to create a national database that anyone can use for whatever purpose. This dataset has 36 variables, though a few are redundant, such as Unique ID and Unique identifier (redundant), or temporary. Some of the main variables are listed in the table below. Many of the variables are self-evident and therefore are lacking a description.</p>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Category</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Name</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Name</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Age</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Gender</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">URL of image (PLS NO HOTLINKS)</td>
+<td style="text-align: center;">Photo of the victim</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Numeric (Date)</td>
+<td style="text-align: center;">Date of injury resulting in death (month/day/year)</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Location of injury (address)</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Location of death (city)</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">State</td>
+<td style="text-align: center;">Inputted as state abbreviations</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Agency or agencies involved</td>
+<td style="text-align: center;">Police departments, shrieff’s offices, etc involved in the incident</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Armed/Unarmed</td>
+<td style="text-align: center;">Whether the victim was armed or unarmed during the incident</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Alleged weapon</td>
+<td style="text-align: center;">If the victim was armed, categorizes the alleged weapon</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Aggressive physical movement</td>
+<td style="text-align: center;">Description of aggressive physical movement the victim performed (e.g.&nbsp;Advanced toward officer(s))</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Fleeing/Not fleeing</td>
+<td style="text-align: center;">Whether the victim attempted to flee, and if so by what method (e.g.&nbsp;Vehicle)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Brief description</td>
+<td style="text-align: center;">A brief description of the incident</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Supporting document link</td>
+<td style="text-align: center;">A link to a new article reporting the incident or a photo of an official document describing the incident</td>
+</tr>
+</tbody>
+</table>
 <p>The <a href="https://data.world/awram/us-police-involved-fatalities">cleaned dataset</a> was posted by Chris Awram to the data.world site. He cleaned the Fatal Encounters dataset and combined it with additional data from <a href="https://www.gunviolencearchive.org/">Gun Violence Archive</a> and <a href="https://data.world/data-society/fatal-police-shootings">Data Society</a>, which sourced its data from the <a href="https://github.com/washingtonpost/data-police-shootings">Washington Post</a>. The purpose of this cleaned dataset was to shed light on altercations with the police in which individuals were killed. This dataset subsets the Fatal Encounters dataset, discarding observations where the deceased individual was not killed by police or by suicide, but only in the presence of a police officer. For example, the death recorded by Unique ID 31495 in the Fatal Encounters dataset resulted from a car accident that was witnessed by a police officer. This observation was filtered out from the cleaned dataset because the deceased was neither killed by a police officer nor a victim of suicide.</p>
-<p>This dataset has 12 variables, including a unique ID for each observation (uid). The variables name, age, gender, and race describe attributes of the deceased. Date, city, and state describe the location and time of the altercation. Manner_of_death indicates whether the individual died by being shot, tasered, both, or some other method. Armed represents what weapon, if any, the individual was carrying, whether a gun, knife, or some other weapon. Mental_illness indicates whether the individual was mentally ill and flee indicates whether the individual attempted to flee the altercation. This cleaned dataset removed some supplemental details from the Fatal Encounter dataset, such as the address of incident, the corresponding latitude and longitude, the agencies involved, and a description of the incident.</p>
+<p>This dataset has 12 variables, including a unique ID for each observation (uid). The variables are listed in the table below.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Type</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Victim</td>
+<td>Character</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Victim</td>
+<td>Integer</td>
+<td>age</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Victim</td>
+<td>Character</td>
+<td>gender</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Victim</td>
+<td>Character</td>
+<td>race</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Incident</td>
+<td>Character</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Location</td>
+<td>Character</td>
+<td>city</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Location</td>
+<td>Character</td>
+<td>state</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Incident</td>
+<td>Character</td>
+<td>manner_of_death</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Incident</td>
+<td>Character</td>
+<td>armed</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Incident</td>
+<td>Logical</td>
+<td>mental_illness</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Incident</td>
+<td>Logical</td>
+<td>flee</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The variables name, age, gender, and race describe attributes of the deceased. Date, city, and state describe the location and time of the altercation. Manner_of_death indicates whether the individual died by being shot, tasered, both, or some other method. Armed represents what weapon, if any, the individual was carrying, whether a gun, knife, or some other weapon. Mental_illness indicates whether the individual was mentally ill and flee indicates whether the individual attempted to flee the altercation. This cleaned dataset removed some supplemental details from the Fatal Encounter dataset, such as the address of incident, the corresponding latitude and longitude, the agencies involved, and a description of the incident.</p>
 </section>
 <section id="u.s.-cities-demographic-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="u.s.-cities-demographic-dataset">U.S. Cities Demographic Dataset</h3>
@@ -311,7 +498,7 @@ dbl (4): min, white, himin, hiwhite
 </section>
 <section id="cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning">Cleaning</h2>
-<p>The police fatality dataset from data.world required no additional cleaning when first downloaded. Our process of loading the police fatality data can be found <a href="./load_and_clean_data.R">here</a>. Before we could combine datasets, we first needed to pivot the U.S. demographic dataset so that there was only one observation for each city. To do so, we used <code>pivot_longer</code> to change the Race variable into multiple Race variables (e.g.&nbsp;Asian, White), each with different values from Count. We then combined the police and demographic datasets by using <code>inner_join</code> with City as the primary key. We set the relationship to “many-to-many” so that fatalities from the same city all had the demographic data added. In the join, the State variables from each dataset got renamed to State.x and State.y. We used <code>select</code> to remove the redundant State.y variable and <code>rename</code> to rename State.x back to State. Some of the observations were missing Race values for the deceased individuals. As race is our main subject of interest, we removed these observations with <code>filter</code>. Our process of combining the datasets can be found <a href="./combining-datasets.R">here</a>.</p>
+<p>The police fatality dataset from data.world required no additional cleaning when first downloaded. Our process of loading the police fatality data can be found <a href="http://load_and_clean_data.r/">here</a>. Before we could combine datasets, we first needed to pivot the U.S. demographic dataset so that there was only one observation for each city. To do so, we used <code>pivot_longer</code> to change the Race variable into multiple Race variables (e.g.&nbsp;Asian, White), each with different values from Count. We then combined the police and demographic datasets by using <code>inner_join</code> with City as the primary key. We set the relationship to “many-to-many” so that fatalities from the same city all had the demographic data added. In the join, the State variables from each dataset got renamed to State.x and State.y. We used <code>select</code> to remove the redundant State.y variable and <code>rename</code> to rename State.x back to State. Some of the observations were missing Race values for the deceased individuals. As race is our main subject of interest, we removed these observations with <code>filter</code>. Our process of combining the datasets can be found <a href="http://combining-datasets.r/">here</a>.</p>
 
 
 </section>

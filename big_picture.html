@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A 538/Upshot style article about the data.">
 
-<title>MA [46]15 Final Project TEAM 2 - Big Picture</title>
+<title>MA [46]15 Final Project TEAM 2 - Behind the Numbers: How Racial Disparities Define Police-Related Fatalities</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -88,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./big_picture.html" rel="" target="" aria-current="page">
- <span class="menu-text">Big Picture</span></a>
+ <span class="menu-text">Behind the Numbers: How Racial Disparities Define Police-Related Fatalities</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./analysis.html" rel="" target="">
@@ -114,7 +147,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link active" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction:</a></li>
+  <li><a href="#racial-breakdown-in-police-fatalities" id="toc-racial-breakdown-in-police-fatalities" class="nav-link" data-scroll-target="#racial-breakdown-in-police-fatalities">Racial Breakdown in Police Fatalities:</a></li>
+  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
   <li><a href="#rubric-other-components" id="toc-rubric-other-components" class="nav-link" data-scroll-target="#rubric-other-components">Rubric: Other components</a>
   <ul class="collapse">
   <li><a href="#interactive" id="toc-interactive" class="nav-link" data-scroll-target="#interactive">Interactive</a></li>
@@ -129,14 +164,9 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Big Picture</h1>
+<h1 class="title">Behind the Numbers: How Racial Disparities Define Police-Related Fatalities</h1>
 </div>
 
-<div>
-  <div class="description">
-    A 538/Upshot style article about the data.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -149,10 +179,47 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><img src="images/The_Big_Picture_2.jpeg" class="img-fluid"></p>
-<p>This comes from the file <code>big_picture.Rmd</code>.</p>
-<p>Think of this page as your 538/Upshot style article. This means that you should try to tell a story through the data and your analysis. Read articles from those sites and similar sites to get a feeling for what they are like. Try to write in the style of a news or popular article. Importantly, this pge should be geared towards the general public. You shouldn’t assume the reader understands how to interpret a linear regression. Focus on interpretation and visualizations.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction:</h2>
+<p>On a windy fall evening in Minneapolis, Minnesota in 2021, a community gathered, candles in hand, and their faces revealed their pain. They were not just mourning for a loss, but also protesting for a pattern. Among them was one old lady, who held a placard in hand that read, ‘Justice for Daunte.’ Daunte Wright, a 20-year-old young Black man, had been stopped and shot by the police during a traffic violation earlier this month. The officer involved resigned and was charged with second-degree manslaughter pending investigation, but to those gathered, this was a familiar end to a grievously familiar story.</p>
+<p>Daunte’s story is not isolated. Across the United States, the tapestry of names, faces, and faded candles tells a similar tale. Data collected nationally reveals a stark reality: racial disparities pervade police-related fatalities, with Black individuals disproportionately represented. These are not just statistics; they are sons and daughters, friends and neighbors, whose stories demand a closer look.</p>
+<p>This analysis aims to peel back the layers of data surrounding police-related fatalities to uncover how deeply race is intertwined with these fatal encounters. By examining the numbers, we seek to understand not only the scope of the disparities but also the human stories behind the statistics.</p>
 <hr>
+</section>
+<section id="racial-breakdown-in-police-fatalities" class="level2">
+<h2 class="anchored" data-anchor-id="racial-breakdown-in-police-fatalities">Racial Breakdown in Police Fatalities:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggplot2))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"combining-datasets.R"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>police_race_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(police_f<span class="sc">$</span>Race)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>police_race_prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(police_race_counts)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>total_pop <span class="ot">&lt;-</span> <span class="fu">sum</span>(us_dem<span class="sc">$</span>Count)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>us_race_prop <span class="ot">&lt;-</span> <span class="fu">tapply</span>(us_dem<span class="sc">$</span>Count, us_dem<span class="sc">$</span>Race, sum) <span class="sc">/</span> total_pop</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Race =</span> <span class="fu">rep</span>(<span class="fu">names</span>(us_race_prop), <span class="dv">2</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">Proportion =</span> <span class="fu">c</span>(us_race_prop, police_race_prop),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">Type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"General Population"</span>, <span class="st">"Police Fatalities"</span>), <span class="at">each =</span> <span class="fu">length</span>(us_race_prop))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Race, <span class="at">y =</span> Proportion, <span class="at">fill =</span> Type)) <span class="sc">+</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Racial Breakdown in Police Fatalities vs. General Population"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Race"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Dataset"</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="big_picture_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<hr>
+</section>
 <section id="rubric-on-this-page" class="level2">
 <h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
 <p>You will</p>
