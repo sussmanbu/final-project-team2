@@ -7,6 +7,11 @@ date: "2024-04-24"
 date-modified: "2024-04-24"
 draft: FALSE
 ---
+
+We started this project with the goal of investigating possible racial disparities in police fatalities. After exploring different possible relationships in our previous blog posts, we want to focus on how the representation of the races in the police fatality dataset compare to the representation of the races in the demographic dataset. We’re interested in seeing if certain races have a higher prevalence in the police fatality dataset than would be expected from the city demographic information. Our thesis is that there is a racial disparity in the demographics of police-related fatalities. In addition, this racial disparity more heavily affects Black people. We have found that Black people have the highest mortality rate among all the cities on average. 
+	To investigate our thesis, we first calculated the total deaths and racial composition percentages of the police fatalities. We then calculated discrepancies in the data, comparing racial percentages with total deaths. From there we looked at which cities had the highest discrepancies. 
+
+
 ```{r}
 
 source("combining-datasets.R")
