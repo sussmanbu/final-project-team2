@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Here we provide a detailed analysis using more sophisticated statistics techniques.">
 
-<title>MA [46]15 Final Project TEAM 2 - Analysis</title>
+<title>MA [46]15 Final Project TEAM 2 - draft for analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -99,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -122,10 +121,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./big_picture.html" rel="" target="">
- <span class="menu-text">Behind the Numbers: How Racial Disparities Define Police-Related Fatalities</span></a>
+ <span class="menu-text">Big Picture</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./analysis.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="./analysis.html" rel="" target="">
  <span class="menu-text">Analysis</span></a>
   </li>  
   <li class="nav-item">
@@ -143,30 +142,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#example-of-loading-data" id="toc-example-of-loading-data" class="nav-link active" data-scroll-target="#example-of-loading-data">Example of loading data</a></li>
-  <li><a href="#note-on-attribution" id="toc-note-on-attribution" class="nav-link" data-scroll-target="#note-on-attribution">Note on Attribution</a></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analysis</h1>
+<h1 class="title">draft for analysis</h1>
 </div>
 
-<div>
-  <div class="description">
-    Here we provide a detailed analysis using more sophisticated statistics techniques.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -179,73 +163,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg" class="img-fluid"></p>
-<p>This comes from the file <code>analysis.qmd</code>.</p>
-<p>We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You’ll also reflect on next steps and further analysis.</p>
-<p>The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc.</p>
-<p>While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points. If you want you can link back to your blog posts or create separate pages with more details.</p>
-<p>The style of this paper should aim to be that of an academic paper. I don’t expect this to be of publication quality but you should keep that aim in mind. Avoid using “we” too frequently, for example “We also found that …”. Describe your methodology and your findings but don’t describe your whole process.</p>
-<section id="example-of-loading-data" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-loading-data">Example of loading data</h3>
-<p>The code below shows an example of loading the loan refusal data set (which you should delete at some point).</p>
+<p>##Introduction In recent years, police-related fatalities have become a focal point of public and academic debate, underscoring critical concerns about racial disparities within law enforcement across the United States. This analysis seeks to explore the extent to which racial disparity, especially against Black individuals, contributes to the demographics of these fatalities. The urgency of this issue is amplified by ongoing societal calls for justice and reform, making it essential to understand the patterns and factors that drive these disparities.</p>
+<p>#Thesis Statement This research posits that racial disparity is a significant factor influencing the demographics of police-related fatalities, with Black individuals experiencing disproportionately high mortality rates in comparison to other races across various cities.</p>
+<p>#Research Questions To provide a structured exploration of this issue, this analysis will address the following key questions:</p>
+<ol type="i">
+<li><p>How do mortality rates from police-related fatalities among Black individuals compare to those of other races across different cities?</p></li>
+<li><p>What factors might contribute to any observed disparities in these mortality rates?</p></li>
+<li><p>Are there specific geographic or demographic contexts in which these disparities are more pronounced?</p></li>
+</ol>
+<p>#Significance of the Analysis The findings of this analysis are intended to contribute to the broader dialogue on racial equity and law enforcement practices. By examining the intersection of race and police-related fatalities, this study aims to provide data-driven insights that could inform policy decisions and advocacy efforts aimed at reducing these disparities. Additionally, this analysis will serve as an educational resource for scholars, policymakers, and the public, fostering a deeper understanding of how racial dynamics shape outcomes in law enforcement encounters.</p>
+<p>Through a combination of quantitative methods and statistical modeling, this analysis page will offer a detailed examination of the available data, aiming to present a clear and comprehensive picture of how race influences the risk of fatality in police interactions. The next sections will describe the data used for this analysis, the methodology employed, and the results obtained,thereby framing the context for a rigorous discussion on this critical social issue.</p>
+<p>##Data Description This analysis leverages two key datasets:</p>
+<p>Police Fatality Dataset &amp; U.S. Cities Demographic Dataset</p>
+<p>To load the dataset, run the attached R script “combining-datasets.R”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(tidyverse)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(getwd())</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data &lt;- read_csv(here::here("dataset/loan_refusal_clean.csv"))</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load(here::here("dataset/loan_refusal.RData"))</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># print(ls())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"combining-datasets.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="note-on-attribution" class="level2">
-<h2 class="anchored" data-anchor-id="note-on-attribution">Note on Attribution</h2>
-<p>In general, you should try to provide links to relevant resources, especially those that helped you. You don’t have to link to every StackOverflow post you used but if there are explainers on aspects of the data or specific models that you found helpful, try to link to those. Also, try to link to other sources that might support (or refute) your analysis. These can just be regular hyperlinks. You don’t need a formal citation.</p>
-<p>If you are directly quoting from a source, please make that clear. You can show quotes using <code>&gt;</code> like this</p>
-<pre><code>&gt; To be or not to be.</code></pre>
-<blockquote class="blockquote">
-<p>To be or not to be.</p>
-</blockquote>
-<hr>
-</section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
-<ul>
-<li>Introduce what motivates your Data Analysis (DA)
-<ul>
-<li>Which variables and relationships are you most interested in?</li>
-<li>What questions are you interested in answering?</li>
-<li>Provide context for the rest of the page. This will include figures/tables that illustrate aspects of the data of your question.</li>
-</ul></li>
-<li>Modeling and Inference
-<ul>
-<li>The page will include some kind of formal statistical model. This could be a linear regression, logistic regression, or another modeling framework.</li>
-<li>Explain the ideas and techniques you used to choose the predictors for your model. (Think about including interaction terms and other transformations of your variables.)</li>
-<li>Describe the results of your modelling and make sure to give a sense of the uncertainty in your estimates and conclusions.</li>
-</ul></li>
-<li>Explain the flaws and limitations of your analysis
-<ul>
-<li>Are there some assumptions that you needed to make that might not hold? Is there other data that would help to answer your questions?</li>
-</ul></li>
-<li>Clarity Figures
-<ul>
-<li>Are your figures/tables/results easy to read, informative, without problems like overplotting, hard-to-read labels, etc?</li>
-<li>Each figure should provide a key insight. Too many figures or other data summaries can detract from this. (While not a hard limit, around 5 total figures is probably a good target.)</li>
-<li>Default <code>lm</code> output and plots are typically not acceptable.</li>
-</ul></li>
-<li>Clarity of Explanations
-<ul>
-<li>How well do you explain each figure/result?</li>
-<li>Do you provide interpretations that suggest further analysis or explanations for observed phenomenon?</li>
-</ul></li>
-<li>Organization and cleanliness.
-<ul>
-<li>Make sure to remove excessive warnings, hide most or all code, organize with sections or multiple pages, use bullets, etc.</li>
-<li>This page should be self-contained, i.e.&nbsp;provide a description of the relevant data.</li>
-</ul></li>
-</ul>
+<p>After running this R script, the two datasets we used will be merged, cleared and loaded into your environment called police_dem. For more information on these two datasets and merging process, see the data page. <a href="https://sussmanbu.github.io/final-project-team2/data.html">data page</a>.</p>
+<p>##Exploratory Data Analysis (EDA)</p>
+<p>Started by exploring the distribution of police-related fatalities by race.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fatalities_by_race <span class="ot">&lt;-</span> police_dem <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Race) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Fatalities =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fatalities_by_race, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Race, <span class="sc">-</span>Fatalities), <span class="at">y =</span> Fatalities, <span class="at">fill =</span> Race)) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Police-Related Fatalities by Race"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Race"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Fatalities"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="draft-for-analysis_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>As expected, the highest number of deaths occurred among blacks or African Americans.</p>
+<p>The next step is to compare this with demographic data, and it would be interesting to examine the relationship between each racial group’s percentage of total deaths and their percentage of the total population of the sampled city. This would help to determine how specific racial groups are disproportionately affected.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fatalities_by_race_city_state <span class="ot">&lt;-</span> police_dem <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(State, City, Race) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Fatalities =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">'drop'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>population_by_race_city_state <span class="ot">&lt;-</span> police_dem <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(State, City) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">White =</span> <span class="fu">first</span>(White),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Black or African-American</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">first</span>(<span class="st">`</span><span class="at">Black or African-American</span><span class="st">`</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Hispanic or Latino</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">first</span>(<span class="st">`</span><span class="at">Hispanic or Latino</span><span class="st">`</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Asian =</span> <span class="fu">first</span>(Asian),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">American Indian and Alaska Native</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">first</span>(<span class="st">`</span><span class="at">American Indian and Alaska Native</span><span class="st">`</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">'drop'</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(City, State), <span class="at">names_to =</span> <span class="st">"Race"</span>, <span class="at">values_to =</span> <span class="st">"Population"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>comparison_df <span class="ot">&lt;-</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fatalities_by_race_city_state, population_by_race_city_state, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"State"</span>, <span class="st">"City"</span>, <span class="st">"Race"</span>))<span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">FatalityPercentage =</span> (Fatalities <span class="sc">/</span> <span class="fu">sum</span>(Fatalities)) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">PopulationPercentage =</span> (Population <span class="sc">/</span> <span class="fu">sum</span>(Population)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(comparison_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 922 × 7
+   State   City       Race              Fatalities Population FatalityPercentage
+   &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;                  &lt;int&gt;      &lt;int&gt;              &lt;dbl&gt;
+ 1 Alabama Birmingham Black or African…         15     157985             0.373 
+ 2 Alabama Birmingham White                      1      51728             0.0249
+ 3 Alabama Dothan     Black or African…          2      23243             0.0497
+ 4 Alabama Dothan     White                      2      43516             0.0497
+ 5 Alabama Hoover     White                      3      61869             0.0746
+ 6 Alabama Huntsville Black or African…          3      61561             0.0746
+ 7 Alabama Huntsville Hispanic or Lati…          3      10887             0.0746
+ 8 Alabama Huntsville White                      6     121904             0.149 
+ 9 Alabama Mobile     Black or African…          6      96397             0.149 
+10 Alabama Mobile     White                      5      93755             0.124 
+# ℹ 912 more rows
+# ℹ 1 more variable: PopulationPercentage &lt;dbl&gt;</code></pre>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
