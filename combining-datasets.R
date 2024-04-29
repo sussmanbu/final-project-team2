@@ -29,5 +29,3 @@ police_dem <- police_dem |> filter(Race != "")
 
 # save combined dataset in dataset folder
 save(police_dem, file = here::here("dataset/police_demo_combined.RData"))
-
-rm(police_f, us_dem_wid, us_dem)
