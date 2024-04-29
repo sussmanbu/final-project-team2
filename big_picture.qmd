@@ -77,6 +77,8 @@ This plot serves as the opening chapter in our broader analysis, a quantifiable 
 suppressPackageStartupMessages(library(maps))
 suppressPackageStartupMessages(library(mapdata))
 
+source("combining-datasets.R")
+
 black_fatalities_by_state <- police_f |>
   filter(Race == "Black" | Race == "Black or African-American") |>
   group_by(State) |>
