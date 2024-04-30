@@ -295,3 +295,53 @@ ggplot(model_data, aes(x = `Black or African-American`, y = Fatalities)) +
   geom_point() +
   geom_smooth(method = "lm")
 ```
+
+```{r}
+
+ggplot(model_data, aes(x = Male.Population, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Female.Population, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Foreign.born, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Average.Household.Size, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = White, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = `Black or African-American`, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+
+ggplot(model_data, aes(x = Female.Population, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Foreign.born, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Average.Household.Size, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = White, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = `Black or African-American`, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
