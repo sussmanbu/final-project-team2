@@ -29,6 +29,7 @@ Police Fatality Dataset & U.S. Cities Demographic Dataset
 To load the dataset, run the attached R script "combining-datasets.R".
 ```{r message=FALSE, warning=FALSE}
 source("combining-datasets.R")
+rm(police_f,us_dem,us_dem_wid)
 ```
 After running this R script, the two datasets we used will be merged, cleared and loaded into your environment called police_dem.
 For more information on these two datasets and merging process, see the data page. 
@@ -76,9 +77,151 @@ comparison_df <-
   left_join(fatalities_by_race_city_state, population_by_race_city_state, by = c("State", "City", "Race"))|>
   mutate(
     FatalityPercentage = (Fatalities / sum(Fatalities)) * 100,
-    PopulationPercentage = (Population / sum(Population)) * 100
-  )
+    PopulationPercentage = (Population / sum(Population)) * 100,
+    diffinPercentage = FatalityPercentage - PopulationPercentage
+  )|>
+  arrange(desc(diffinPercentage))
 print(comparison_df)
 
+```
+```{r}
+sum_df<- comparison_df|>
+  group_by(Race)|>
+  summarise(sumfatalityp = sum(FatalityPercentage),
+          sumpopulationp = sum(PopulationPercentage))|>
+  pivot_longer(cols = c(sumfatalityp, sumpopulationp), names_to = "Type", values_to = "Percentage") %>%
+  mutate(Type = recode(Type, 'sumfatalityp' = 'Fatality Percentage', 'sumpopulationp' = 'Population Percentage'))
+
+ggplot(sum_df, aes(x = Type, y = Percentage, fill = Type)) +
+  geom_col(position = position_dodge(width = 0.8)) +
+  facet_wrap(~ Race) +
+  labs(
+    title = "Comparison of Fatality and Population Percentages by Race",
+    x = NULL,
+    y = "Percentage"
+  ) +
+  scale_fill_manual(values = c("Fatality Percentage" = "red", "Population Percentage" = "blue")) +
+  theme(
+    axis.text.x = element_blank(),  
+    axis.ticks.x = element_blank(), 
+    strip.background = element_blank(),
+    strip.text.x = element_text(size = 10)
+  ) 
+
+
+```
+```{r, message=FALSE, warning=FALSE}
+library(tidycensus)
+library(sf)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+states_sf <- get_decennial(geography = "state", 
+                           year = 2020, 
+                           variables = "H1_001N", 
+                           geometry = TRUE)
+```
+
+```{r}
+state_level_comparison_df <- comparison_df %>%
+  group_by(State, Race) %>%
+  summarize(Diff_Percentage = mean(diffinPercentage, na.rm = TRUE), .groups = 'drop')
+
+state_data_sf <- inner_join(states_sf, state_level_comparison_df, by = c("NAME" = "State"))
+```
+
+```{r}
+state_data_sf %>%
+  ggplot() +
+  geom_sf(aes(fill = Diff_Percentage), color = NA) +
+  scale_fill_gradient2(
+    low = "blue", mid = "white", high = "red",  # Adjust colors if needed
+    midpoint = 0, 
+    limit = c(min(state_data_sf$Diff_Percentage, na.rm = TRUE), max(state_data_sf$Diff_Percentage, na.rm = TRUE)), 
+    name = "Diff in Percentage",
+    na.value = "white"
+  ) +
+  facet_wrap(~ Race) +
+  labs(
+    title = "Difference in Police Fatality and Population Percentages by Race and State",
+    subtitle = "Faceted by Race",
+    fill = "Diff in Percentage"
+  ) +
+  theme_void() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 14, hjust = 0.5), 
+    plot.subtitle = element_text(size = 12),
+    strip.text = element_text(size = 10)  # Adjust facet label text size
+  ) +
+  coord_sf(xlim = c(-125, -67), ylim = c(24, 50), expand = FALSE)
+
+```
+
+##Modelling 
+
+```{r}
+model_data<- police_dem|>
+  group_by(City)|>
+  summarise(Fatalities = n(),
+            Median.Age = first(Median.Age),
+            Male.Population = first(Male.Population),
+            Female.Population = first(Female.Population),
+            Foreign.born = first(Foreign.born),
+            Average.Household.Size = first(Average.Household.Size),
+            White = first(White),
+            `Black or African-American` = first(`Black or African-American`),
+            `Hispanic or Latino` = first(`Hispanic or Latino`),
+            Asian = first(Asian),
+            `American Indian and Alaska Native` = first(`American Indian and Alaska Native`)
+            )|>
+  arrange(desc(Fatalities))
+model_data <- na.omit(model_data)
+print(model_data)
+```
+```{r}
+ggplot(model_data, aes(x = Fatalities)) + 
+  geom_histogram(binwidth = 1, fill = 'blue', color = 'black')
+```
+The distrubution is highly skewed
+```{r}
+ggplot(model_data, aes(x = Median.Age, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```{r}
+ggplot(model_data, aes(x = Male.Population, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+ggplot(model_data, aes(x = Female.Population, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+ggplot(model_data, aes(x = Foreign.born, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+ggplot(model_data, aes(x = Average.Household.Size, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```{r}
+ggplot(model_data, aes(x = White, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+
+```{r}
+ggplot(model_data, aes(x = `Black or African-American`, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
 ```
 
