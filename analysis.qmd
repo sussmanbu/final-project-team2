@@ -70,3 +70,278 @@ You will
 -   Organization and cleanliness.
     -   Make sure to remove excessive warnings, hide most or all code, organize with sections or multiple pages, use bullets, etc.
     -   This page should be self-contained, i.e. provide a description of the relevant data.
+
+
+
+
+
+
+
+
+
+
+##Introduction
+In recent years, police-related fatalities have become a focal point of public and academic debate, underscoring critical concerns about racial disparities within law enforcement across the United States. This analysis seeks to explore the extent to which racial disparity, especially against Black individuals, contributes to the demographics of these fatalities. The urgency of this issue is amplified by ongoing societal calls for justice and reform, making it essential to understand the patterns and factors that drive these disparities.
+
+#Thesis Statement
+This research posits that racial disparity is a significant factor influencing the demographics of police-related fatalities, with Black individuals experiencing disproportionately high mortality rates in comparison to other races across various cities.
+
+#Research Questions
+To provide a structured exploration of this issue, this analysis will address the following key questions:
+
+i. How do mortality rates from police-related fatalities among Black individuals compare to those of other races across different cities?
+
+ii. What factors might contribute to any observed disparities in these mortality rates?
+
+iii. Are there specific geographic or demographic contexts in which these disparities are more pronounced?
+
+#Significance of the Analysis
+The findings of this analysis are intended to contribute to the broader dialogue on racial equity and law enforcement practices. By examining the intersection of race and police-related fatalities, this study aims to provide data-driven insights that could inform policy decisions and advocacy efforts aimed at reducing these disparities. Additionally, this analysis will serve as an educational resource for scholars, policymakers, and the public, fostering a deeper understanding of how racial dynamics shape outcomes in law enforcement encounters.
+
+Through a combination of quantitative methods and statistical modeling, this analysis page will offer a detailed examination of the available data, aiming to present a clear and comprehensive picture of how race influences the risk of fatality in police interactions. The next sections will describe the data used for this analysis, the methodology employed, and the results obtained,thereby framing the context for a rigorous discussion on this critical social issue.
+
+##Data Description
+This analysis leverages two key datasets:
+
+Police Fatality Dataset & U.S. Cities Demographic Dataset
+
+To load the dataset, run the attached R script "combining-datasets.R".
+```{r message=FALSE, warning=FALSE}
+source("combining-datasets.R")
+rm(police_f,us_dem,us_dem_wid)
+```
+After running this R script, the two datasets we used will be merged, cleared and loaded into your environment called police_dem.
+For more information on these two datasets and merging process, see the data page. 
+[data page](https://sussmanbu.github.io/final-project-team2/data.html).
+
+##Exploratory Data Analysis (EDA)
+
+Started by exploring the distribution of police-related fatalities by race.
+```{r}
+fatalities_by_race <- police_dem |>
+  group_by(Race) |>
+  summarize(Fatalities = n()) |>
+  ungroup()
+
+ggplot(fatalities_by_race, aes(x = reorder(Race, -Fatalities), y = Fatalities, fill = Race)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Distribution of Police-Related Fatalities by Race",
+    x = "Race",
+    y = "Number of Fatalities"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+As expected, the highest number of deaths occurred among blacks or African Americans.
+
+The next step is to compare this with demographic data, and it would be interesting to examine the relationship between each racial group's percentage of total deaths and their percentage of the total population of the sampled city. This would help to determine how specific racial groups are disproportionately affected.
+```{r}
+fatalities_by_race_city_state <- police_dem |>
+  group_by(State, City, Race) |>
+  summarize(Fatalities = n(), .groups = 'drop')
+
+population_by_race_city_state <- police_dem |>
+  group_by(State, City) |>
+  summarise(
+    White = first(White),
+    `Black or African-American` = first(`Black or African-American`),
+    `Hispanic or Latino` = first(`Hispanic or Latino`),
+    Asian = first(Asian),
+    `American Indian and Alaska Native` = first(`American Indian and Alaska Native`),
+    .groups = 'drop'
+  )|>
+  pivot_longer(cols = -c(City, State), names_to = "Race", values_to = "Population")
+
+comparison_df <- 
+  left_join(fatalities_by_race_city_state, population_by_race_city_state, by = c("State", "City", "Race"))|>
+  mutate(
+    FatalityPercentage = (Fatalities / sum(Fatalities)) * 100,
+    PopulationPercentage = (Population / sum(Population)) * 100,
+    diffinPercentage = FatalityPercentage - PopulationPercentage
+  )|>
+  arrange(desc(diffinPercentage))
+
+```
+
+
+```{r}
+sum_df<- comparison_df|>
+  group_by(Race)|>
+  summarise(sumfatalityp = sum(FatalityPercentage),
+          sumpopulationp = sum(PopulationPercentage))|>
+  pivot_longer(cols = c(sumfatalityp, sumpopulationp), names_to = "Type", values_to = "Percentage") %>%
+  mutate(Type = recode(Type, 'sumfatalityp' = 'Fatality Percentage', 'sumpopulationp' = 'Population Percentage'))
+
+ggplot(sum_df, aes(x = Type, y = Percentage, fill = Type)) +
+  geom_col(position = position_dodge(width = 0.8)) +
+  facet_wrap(~ Race) +
+  labs(
+    title = "Comparison of Fatality and Population Percentages by Race",
+    x = NULL,
+    y = "Percentage"
+  ) +
+  scale_fill_manual(values = c("Fatality Percentage" = "red", "Population Percentage" = "blue")) +
+  theme(
+    axis.text.x = element_blank(),  
+    axis.ticks.x = element_blank(), 
+    strip.background = element_blank(),
+    strip.text.x = element_text(size = 10)
+  ) 
+
+
+```
+```{r, message=FALSE, warning=FALSE}
+library(tidycensus)
+library(sf)
+```
+
+
+```{r, message=FALSE, warning=FALSE}
+states_sf <- get_decennial(geography = "state", 
+                           year = 2020, 
+                           variables = "H1_001N", 
+                           geometry = TRUE)
+```
+
+```{r}
+state_level_comparison_df <- comparison_df %>%
+  group_by(State, Race) %>%
+  summarize(Diff_Percentage = mean(diffinPercentage, na.rm = TRUE), .groups = 'drop')
+
+state_data_sf <- inner_join(states_sf, state_level_comparison_df, by = c("NAME" = "State"))
+```
+
+```{r}
+state_data_sf %>%
+  ggplot() +
+  geom_sf(aes(fill = Diff_Percentage), color = NA) +
+  scale_fill_gradient2(
+    low = "blue", mid = "white", high = "red",  # Adjust colors if needed
+    midpoint = 0, 
+    limit = c(min(state_data_sf$Diff_Percentage, na.rm = TRUE), max(state_data_sf$Diff_Percentage, na.rm = TRUE)), 
+    name = "Diff in Percentage",
+    na.value = "white"
+  ) +
+  facet_wrap(~ Race) +
+  labs(
+    title = "Difference in Police Fatality and Population Percentages by Race and State",
+    subtitle = "Faceted by Race",
+    fill = "Diff in Percentage"
+  ) +
+  theme_void() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(size = 14, hjust = 0.5), 
+    plot.subtitle = element_text(size = 12),
+    strip.text = element_text(size = 10)  # Adjust facet label text size
+  ) +
+  coord_sf(xlim = c(-125, -67), ylim = c(24, 50), expand = FALSE)
+
+```
+
+##Modelling 
+
+```{r}
+model_data<- police_dem|>
+  group_by(City)|>
+  summarise(Fatalities = n(),
+            Median.Age = first(Median.Age),
+            Male.Population = first(Male.Population),
+            Female.Population = first(Female.Population),
+            Foreign.born = first(Foreign.born),
+            Average.Household.Size = first(Average.Household.Size),
+            White = first(White),
+            `Black or African-American` = first(`Black or African-American`),
+            `Hispanic or Latino` = first(`Hispanic or Latino`),
+            Asian = first(Asian),
+            `American Indian and Alaska Native` = first(`American Indian and Alaska Native`)
+            )|>
+  arrange(desc(Fatalities))
+model_data <- na.omit(model_data)
+print(model_data)
+```
+
+```{r}
+ggplot(model_data, aes(x = Fatalities)) + 
+  geom_histogram(binwidth = 1, fill = 'blue', color = 'black')
+```
+The distrubution is highly skewed
+```{r}
+ggplot(model_data, aes(x = Median.Age, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Male.Population, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Female.Population, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Foreign.born, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Average.Household.Size, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = White, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = `Black or African-American`, y = Fatalities)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+```{r}
+
+ggplot(model_data, aes(x = Male.Population, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Female.Population, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Foreign.born, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Average.Household.Size, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = White, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = `Black or African-American`, y = Median.Age)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+
+ggplot(model_data, aes(x = Female.Population, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Foreign.born, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = Average.Household.Size, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = White, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(model_data, aes(x = `Black or African-American`, y = Male.Population)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
