@@ -1,1 +1,88 @@
 /* css styles */
+
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header and navigation styles */
+#quarto-header {
+    background-color: #004d99;
+    color: white;
+    border-bottom: 5px solid #003366;
+}
+
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #cce5ff;
+}
+
+/* Main content area */
+.quarto-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Section and title styles */
+h1.title {
+    color: #003366;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.content h3 {
+    border-bottom: 2px solid #004d99;
+    padding-bottom: 5px;
+    color: #003366;
+}
+
+/* About sections */
+.section {
+    margin-bottom: 20px;
+}
+
+.about-sep {
+    border-color: #ddd;
+}
+
+.about-links a {
+    display: inline-block;
+    margin: 10px;
+    color: #004d99;
+    text-decoration: none;
+}
+
+.about-link i {
+    margin-right: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+    }
+
+    .quarto-container {
+        padding: 10px;
+    }
+}
