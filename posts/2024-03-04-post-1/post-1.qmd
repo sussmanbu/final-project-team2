@@ -1,5 +1,7 @@
 ---
 title: "Post 1"
+description:  |
+  Post 1 from team 2
 author: "Team 2"
 date: "2024-03-04"
 date-modified: "2024-03-04"

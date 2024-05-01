@@ -1,7 +1,7 @@
 ---
 title: "Post 7"
 description:  |
-  Blog Post 7 of Team 2
+  Post 7 from team 2
 author: ""
 date: "2024-05-01"
 date-modified: "2024-05-01"
