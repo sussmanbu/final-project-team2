@@ -1,5 +1,5 @@
 ---
-title: "Post 5 Team 2"
+title: "Post 5"
 description:  |
   Post 5 from team 2
 author: ""
