@@ -14,7 +14,7 @@ draft: false
 The source of the original dataset is Fatal Encounters, a blog created by Dr. Brian Burghart, a journalist and part-time researcher for the University of Southern California. Dr. Burghart and his associates compiled media reports and police records to create the database. The data represents deaths that occurred when police were present or were caused by police, including "on-duty, off-duty, criminal, line-of-duty, local, federal, intentional, \[and\] accidental." The goal of Fatal Encounters is to create a national database that anyone can use for whatever purpose. This dataset has 36 variables, though a few are redundant, such as Unique ID and Unique identifier (redundant), or temporary. Some of the main variables are listed in the table below. Many of the variables are self-evident and therefore are lacking a description.
 
 | Category |      Type      |                        Name                        |                                                Description                                                |
-|:--------------:|:--------------:|:------------------:|:------------------:|
+|:---------------:|:---------------:|:-----------------:|:-----------------:|
 |  Victim  |   Character    |                        Name                        |                                                    \-                                                     |
 |  Victim  |    Integer     |                        Age                         |                                                    \-                                                     |
 |  Victim  |   Character    |                       Gender                       |                                                    \-                                                     |
@@ -36,7 +36,7 @@ The [cleaned dataset](https://data.world/awram/us-police-involved-fatalities) wa
 This dataset has 12 variables, including a unique ID for each observation (uid). The variables are listed in the table below.
 
 | Category |   Type    |      Name       |                           Description                            |
-|:--------:|:---------:|:---------------:|:----------------------------------------------------------------:|
+|:----------:|:----------:|:----------:|:-----------------------------------:|
 |  Victim  | Character |      name       |                                \-                                |
 |  Victim  |  Integer  |       age       |                                \-                                |
 |  Victim  | Character |     gender      |                                \-                                |
@@ -55,21 +55,21 @@ This cleaned dataset removed some supplemental details from the Fatal Encounter 
 
 We supplemented our police fatality dataset by joining it with a [U.S. cities demographic dataset](https://public.opendatasoft.com/explore/dataset/us-cities-demographics/information/). This demographic dataset was sourced from the U.S. Census Bureau's 2015 American Community Survey and posted to the opendatasoft site by the U.S. Census Bureau. U.S. cities with populations greater than or equal to 65,000 are included in this dataset. This dataset has 12 variables, all listed in the table below. The variables Race and Count are connected, with Count describing the number of individuals of a certain race. There are multiple observations per City, each with a different Race and Count.
 
-|  Category   |   Type    |          Name          |               Description                |
-|:-----------:|:---------:|:----------------------:|:----------------------------------------:|
-|  Location   | Character |          City          |                    \-                    |
-|  Location   | Character |         State          |                    \-                    |
-| Demographic | Character |          Race          |                    \-                    |
-| Demographic |  Integer  |         Count          | Number of individuals of a certain race  |
-| Demographic |  Integer  |       Median Age       |                    \-                    |
-| Demographic |  Integer  |    Male Population     |                    \-                    |
-| Demographic |  Integer  |   Female Population    |                    \-                    |
-| Demographic |  Integer  |    Total Population    |                    \-                    |
-| Demographic |  Integer  |   Number of Veterans   |                    \-                    |
-| Demographic |  Integer  |      Foreign-born      |    Number of foreign-born individuals    |
-| Demographic |  Numeric  | Average Household Size |                    \-                    |
-|  Location   | Character |       State Code       |        Abbreviation of state name        |
+|  Category   |   Type    |          Name          |               Description               |
+|:------------:|:------------:|:-------------:|:---------------------------:|
+|  Location   | Character |          City          |                   \-                    |
+|  Location   | Character |         State          |                   \-                    |
+| Demographic | Character |          Race          |                   \-                    |
+| Demographic |  Integer  |         Count          | Number of individuals of a certain race |
+| Demographic |  Integer  |       Median Age       |                   \-                    |
+| Demographic |  Integer  |    Male Population     |                   \-                    |
+| Demographic |  Integer  |   Female Population    |                   \-                    |
+| Demographic |  Integer  |    Total Population    |                   \-                    |
+| Demographic |  Integer  |   Number of Veterans   |                   \-                    |
+| Demographic |  Integer  |      Foreign-born      |   Number of foreign-born individuals    |
+| Demographic |  Numeric  | Average Household Size |                   \-                    |
+|  Location   | Character |       State Code       |       Abbreviation of state name        |
 
 ## Cleaning
 
-The police fatality dataset from data.world required no additional cleaning when first downloaded. Our process of loading the police fatality data can be found [here](http://load_and_clean_data.r/). Before we could combine datasets, we first needed to pivot the U.S. demographic dataset so that there was only one observation for each city. To do so, we used `pivot_longer` to change the Race variable into multiple Race variables (e.g. Asian, White), each with different values from Count. We then combined the police and demographic datasets by using `inner_join` with City as the primary key. We set the relationship to "many-to-many" so that fatalities from the same city all had the demographic data added. In the join, the State variables from each dataset got renamed to State.x and State.y. We used `select` to remove the redundant State.y variable and `rename` to rename State.x back to State. Some of the observations were missing Race values for the deceased individuals. As race is our main subject of interest, we removed these observations with `filter`. Our process of combining the datasets can be found [here](http://combining-datasets.r/).
+The police fatality dataset from data.world required no additional cleaning when first downloaded. Our process of loading the police fatality data can be found [here](http://load_and_clean_data.r/). Before we could combine datasets, we first needed to pivot the U.S. demographic dataset so that there was only one observation for each city. To do so, we used `pivot_longer` to change the Race variable into multiple Race variables (e.g. Asian, White), each with different values from Count. We originally joined the datasets using City as the primary key, but found issues as there are some cities with the same name but in different states. We then combined the police and demographic datasets by using `inner_join` with City as well as State Code.  We set the relationship to "many-to-many" so that fatalities from the same city all had the demographic data added. As we were looking over the data, we noticed that some observations were of the same individual, but with slightly different information concerning the fatal incident. For example, two observations with different unique IDs but with the same victim information (name, race, etc) and location might have conflicting information over whether the individual fled the altercation. We decided the remove all duplicated observations as we had no way of verifying which observation was accurate (e.g. whether the individual fled). We did this by first using `group_by(Name, City, State)` to group the same altercations and then using `filter` to remove groups with more than one observation. We also noticed that some of the observations were missing Race values for the deceased individuals. As race is our main subject of interest, we removed these observations with `filter`. Our process of combining the datasets can be found [here](http://combining-datasets.r/).
