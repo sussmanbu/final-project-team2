@@ -238,6 +238,7 @@ state_data_sf %>%
   coord_sf(xlim = c(-125, -67), ylim = c(24, 50), expand = FALSE)
 
 ```
+As shown in the graph, both White and Hispanic has a smaller police fatality rate comparing to the population percentage. However, for Blan or African-American, there is a higher police fatality rate than the population percentage comparing to other races.
 
 ##Modelling 
 
@@ -259,89 +260,134 @@ model_data<- police_dem|>
   arrange(desc(Fatalities))
 model_data <- na.omit(model_data)
 print(model_data)
-```
-
-```{r}
-ggplot(model_data, aes(x = Fatalities)) + 
-  geom_histogram(binwidth = 1, fill = 'blue', color = 'black')
-```
-The distrubution is highly skewed
-```{r}
-ggplot(model_data, aes(x = Median.Age, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Male.Population, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Female.Population, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Foreign.born, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Average.Household.Size, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = White, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = `Black or African-American`, y = Fatalities)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-```
-
-```{r}
-
-ggplot(model_data, aes(x = Male.Population, y = Median.Age)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Female.Population, y = Median.Age)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Foreign.born, y = Median.Age)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = Average.Household.Size, y = Median.Age)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = White, y = Median.Age)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
-
-ggplot(model_data, aes(x = `Black or African-American`, y = Median.Age)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
+write.csv(model_data, "model_data.csv", row.names = FALSE)
 ```
 ```{r}
+# Loading necessary libraries
+library(dplyr)
+library(randomForest)
+library(caret)
 
-ggplot(model_data, aes(x = Female.Population, y = Male.Population)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
+# Reading CSV
+model_data <- read.csv("model_data.csv")
 
-ggplot(model_data, aes(x = Foreign.born, y = Male.Population)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
+# Preprocessing
+features <- c("Median.Age", "Average.Household.Size", "White", "Black.or.African.American",
+              "Hispanic.or.Latino", "Asian", "Foreign.born")
+X <- model_data[features]
+y <- model_data$Fatalities
 
-ggplot(model_data, aes(x = Average.Household.Size, y = Male.Population)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
+set.seed(42)
+train_indices <- createDataPartition(y, p=0.8, list=FALSE)
+X_train <- X[train_indices, ]
+y_train <- y[train_indices]
+X_test <- X[-train_indices, ]
+y_test <- y[-train_indices]
 
-ggplot(model_data, aes(x = White, y = Male.Population)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
+# Models to compare
+models <- c("lm", "rf", "gbm") # Linear regression, random forest, and gradient boosted trees
 
-ggplot(model_data, aes(x = `Black or African-American`, y = Male.Population)) + 
-  geom_point() +
-  geom_smooth(method = "lm")
+# Training models and collecting results
+results <- lapply(models, function(model_type) {
+    model <- train(X_train, y_train, method=model_type, trControl=trainControl(method="cv", number=5))
+    preds <- predict(model, X_test)
+    mse <- mean((y_test - preds)^2)
+    r2 <- cor(y_test, preds)^2
+    list(model=model, mse=mse, r2=r2, preds=preds)
+})
+
+# Storing results in a list for later access
+results_named <- setNames(results, models)
+
+# Comparing model results as a summary
+comparison_table <- data.frame(
+    Model=names(results_named),
+    MSE=sapply(results_named, function(res) res$mse),
+    R2=sapply(results_named, function(res) res$r2)
+)
+
+print(comparison_table)
+
+# Tuning the random forest model
+tuneGrid <- expand.grid(mtry = c(3, 4, 5))
+rf_tuned <- train(X_train, y_train, method="rf", trControl=trainControl(method="cv", number=5), tuneGrid=tuneGrid)
+
+print(rf_tuned)
+
 ```
+According to this result, it is shown that the third model, GBM (Gradient Boosting Model) has the highest R2 value and lowest MSE, which make this model the optimal choice for our research, now we will refine and improve this model.
+
+```{r}
+# Loading necessary libraries
+library(dplyr)
+library(randomForest)
+library(caret)
+library(gbm)
+
+# Reading the CSV file
+model_data <- read.csv("model_data.csv")
+
+# Preprocessing
+features <- c("White", "Black.or.African.American", "Hispanic.or.Latino", "Asian", "American.Indian.and.Alaska.Native")
+X <- model_data[features]
+y <- model_data$Fatalities
+
+# Splitting data
+set.seed(42)
+train_indices = createDataPartition(y, p=0.8, list=FALSE)
+X_train = X[train_indices, ]
+y_train = y[train_indices]
+X_test = X[-train_indices, ]
+y_test = y[-train_indices]
+
+# Define the tuning grid
+tuneGrid_gbm = expand.grid(
+    interaction.depth = c(1, 2, 3),
+    n.trees = c(50, 100, 150),
+    shrinkage = c(0.1, 0.05),
+    n.minobsinnode = c(10, 20)
+)
+
+train_control = trainControl(method="cv", number=5, verboseIter=FALSE)
+
+# Training the model
+gbm_tuned = train(X_train, y_train, method="gbm", trControl=train_control, tuneGrid=tuneGrid_gbm)
+
+# Extracting importance directly
+importance <- relative.influence(gbm_tuned$finalModel)
+
+# Converting to a data frame
+importance_df <- data.frame(Feature=names(importance), Relative_Influence=importance)
+
+# Plotting graph with labels
+ggplot(importance_df, aes(x=reorder(Feature, Relative_Influence), y=Relative_Influence)) +
+  geom_bar(stat="identity", fill="blue") +
+  coord_flip() +
+  labs(title="Relative Influence of Features", x="Features", y="Relative Influence")
+
+```
+As we can see in the chart, Black has the lowest relative influence on the prediction, which may contradict our findings. However, there are a few explanations: "Influence" reflects how much each feature contributes to the model's predictive power, but might not directly correlate with a feature's impact in the real world. Complex interactions between demographics and fatalities might not align directly with simple correlations. Which means there are still more work need to be done in order to prefectly predict with this model.
+
+
+```{r}
+# Convert all columns except 'City' to numeric
+numeric_columns <- c("Fatalities", "Median.Age", "Male.Population", "Female.Population",
+                     "Foreign.born", "Average.Household.Size", "White", "Black.or.African.American",
+                     "Hispanic.or.Latino", "Asian", "American.Indian.and.Alaska.Native")
+
+model_data[numeric_columns] <- lapply(model_data[numeric_columns], as.numeric)
+
+# Checking correlation
+correlations <- cor(model_data[numeric_columns])
+print(correlations)
+
+cor_black_fatalities <- cor.test(model_data$Fatalities, model_data$Black.or.African.American)
+print(cor_black_fatalities)
+```
+
+
+According to the summarization above, the correlation analysis reveals a moderate positive relationship between the "Black or African-American" demographic and fatality rates, with a correlation of 0.35 and a p-value indicating statistical significance. This suggests that as the percentage of this demographic increases, fatality rates tend to increase as well. However, the "Hispanic or Latino" demographic shows a higher correlation with fatalities, at 0.65. The feature importance results from the GBM model reflect these relationships, with "Black or African-American" ranking fourth in influence. These findings offer insights into how different demographic features contribute to predicting fatality rates.
+
+
+
 
