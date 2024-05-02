@@ -7,124 +7,49 @@ draft: false
 
 ![](images/data-import-cheatsheet-thumbs.png)
 
-This comes from the file `data.qmd`.
-
-Your first steps in this project will be to find data to work on.
-
-I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.
-
-Initially, you will study *one dataset* but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable. Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.
-
-## What makes a good data set?
-
--   Data you are interested in and care about.
--   Data where there are a lot of potential questions that you can explore.
--   A data set that isn't completely cleaned already.
--   Multiple sources for data that you can combine.
--   Some type of time and/or location component.
-
-## Where to keep data?
-
-Below 50mb: In `dataset` folder
-
-Above 50mb: In `dataset_ignore` folder. This folder will be ignored by `git` so you'll have to manually sync these files across your team.
-
-### Sharing your data
-
-For small datasets (\<50mb), you can use the `dataset` folder that is tracked by github. Add the files just like you would any other file.
-
-If you create a folder named `data` this will cause problems.
-
-For larger datasets, you'll need to create a new folder in the project root directory named `dataset-ignore`. This will be ignored by git (based off the `.gitignore` file in the project root directory) which will help you avoid issues with Github's size limits. Your team will have to manually make sure the data files in `dataset-ignore` are synced across team members.
-
-Your [load_and_clean_data.R](/scripts/load_and_clean_data.R) file is how you will load and clean your data. Here is a an example of a very simple one.
-
-```{r}
-source(
-  "scripts/load_and_clean_data.R",
-  echo = TRUE # Use echo=FALSE or omit it to avoid code output  
-)
-```
-
-You should never use absolute paths (eg. `/Users/danielsussman/path/to/project/` or `C:\MA415\\Final_Project\`).
-
-You might consider using the `here` function from the [`here` package](https://here.r-lib.org/articles/here.html) to avoid path problems.
-
-### Load and clean data script
-
-The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them. This file might create a derivative data set that you then use for your subsequent analysis. Note that you don't need to run this script from every post/page. Instead, you can load in the results of this script, which could be plain text files or `.RData` files. In your data page you'll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes. To link to this file, you can use `[cleaning script](/scripts/load_and_clean_data.R)` wich appears as [cleaning script](/scripts/load_and_clean_data.R).
-
-------------------------------------------------------------------------
-
-## Rubric: On this page
-
-You will
-
--   Describe where/how to find data.
-
-    -   You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.
-    -   Why was the data collected/curated? Who put it together? (This is important, if you don't know why it was collected then that might not be a good dataset to look at.
-
--   Describe the different data files used and what each variable means.
-
-    -   If you have many variables then only describe the most relevant ones and summarize the rest.
-
--   Describe any cleaning you had to do for your data.
-
-    -   You *must* include a link to your `load_and_clean_data.R` file.
-    -   Rrename variables and recode factors to make data more clear.
-    -   Also, describe any additional R packages you used outside of those covered in class.
-    -   Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.
-    -   Some repetition of what you do in your `load_and_clean_data.R` file is fine and encouraged if it helps explain what you did.
-
--   Organization, clarity, cleanliness of the page
-
-    -   Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.
-    -   This page should be self-contained.
-
 ## Background
 
 ### Police Fatality Dataset
 
 The source of the original dataset is Fatal Encounters, a blog created by Dr. Brian Burghart, a journalist and part-time researcher for the University of Southern California. Dr. Burghart and his associates compiled media reports and police records to create the database. The data represents deaths that occurred when police were present or were caused by police, including "on-duty, off-duty, criminal, line-of-duty, local, federal, intentional, \[and\] accidental." The goal of Fatal Encounters is to create a national database that anyone can use for whatever purpose. This dataset has 36 variables, though a few are redundant, such as Unique ID and Unique identifier (redundant), or temporary. Some of the main variables are listed in the table below. Many of the variables are self-evident and therefore are lacking a description.
 
-| Category  |      Type      |                        Name                         |                                                Description                                                |
-|:--------:|:-------:|:-------------------------:|:-------------------------:|
-|  Victim   |   Character    |                        Name                         |                                                    \-                                                     |
-|  Victim   |    Integer     |                         Age                         |                                                    \-                                                     |
-|  Victim   |   Character    |                       Gender                        |                                                    \-                                                     |
-|  Victim   |   Character    |           URL of image (PLS NO HOTLINKS)            |                                            Photo of the victim                                            |
-| Incident  | Numeric (Date) |  Date of injury resulting in death (month/day/year) |                                                    \-                                                     |
-| Location  |   Character    |            Location of injury (address)             |                                                    \-                                                     |
-| Location  |   Character    |              Location of death (city)               |                                                    \-                                                     |
-| Location  |   Character    |                        State                        |                                      Inputted as state abbreviations                                      |
-| Incident  |   Character    |             Agency or agencies involved             |                    Police departments, shrieff's offices, etc involved in the incident                    |
-| Incident  |   Character    |                    Armed/Unarmed                    |                        Whether the victim was armed or unarmed during the incident                        |
-| Incident  |   Character    |                   Alleged weapon                    |                          If the victim was armed, categorizes the alleged weapon                          |
-| Incident  |   Character    |            Aggressive physical movement             |    Description of aggressive physical movement the victim performed (e.g. Advanced toward officer(s))     |
-| Incident  |   Character    |                 Fleeing/Not fleeing                 |               Whether the victim attempted to flee, and if so by what method (e.g. Vehicle)               |
-| Incident  |   Character    |                  Brief description                  |                                    A brief description of the incident                                    |
-| Incident  |   Character    |              Supporting document link               | A link to a new article reporting the incident or a photo of an official document describing the incident |
+| Category |      Type      |                        Name                        |                                                Description                                                |
+|:--------------:|:--------------:|:------------------:|:------------------:|
+|  Victim  |   Character    |                        Name                        |                                                    \-                                                     |
+|  Victim  |    Integer     |                        Age                         |                                                    \-                                                     |
+|  Victim  |   Character    |                       Gender                       |                                                    \-                                                     |
+|  Victim  |   Character    |           URL of image (PLS NO HOTLINKS)           |                                            Photo of the victim                                            |
+| Incident | Numeric (Date) | Date of injury resulting in death (month/day/year) |                                                    \-                                                     |
+| Location |   Character    |            Location of injury (address)            |                                                    \-                                                     |
+| Location |   Character    |              Location of death (city)              |                                                    \-                                                     |
+| Location |   Character    |                       State                        |                                      Inputted as state abbreviations                                      |
+| Incident |   Character    |            Agency or agencies involved             |                    Police departments, shrieff's offices, etc involved in the incident                    |
+| Incident |   Character    |                   Armed/Unarmed                    |                        Whether the victim was armed or unarmed during the incident                        |
+| Incident |   Character    |                   Alleged weapon                   |                          If the victim was armed, categorizes the alleged weapon                          |
+| Incident |   Character    |            Aggressive physical movement            |    Description of aggressive physical movement the victim performed (e.g. Advanced toward officer(s))     |
+| Incident |   Character    |                Fleeing/Not fleeing                 |               Whether the victim attempted to flee, and if so by what method (e.g. Vehicle)               |
+| Incident |   Character    |                 Brief description                  |                                    A brief description of the incident                                    |
+| Incident |   Character    |              Supporting document link              | A link to a new article reporting the incident or a photo of an official document describing the incident |
 
 The [cleaned dataset](https://data.world/awram/us-police-involved-fatalities) was posted by Chris Awram to the data.world site. He cleaned the Fatal Encounters dataset and combined it with additional data from [Gun Violence Archive](https://www.gunviolencearchive.org/) and [Data Society](https://data.world/data-society/fatal-police-shootings), which sourced its data from the [Washington Post](https://github.com/washingtonpost/data-police-shootings). The purpose of this cleaned dataset was to shed light on altercations with the police in which individuals were killed. This dataset subsets the Fatal Encounters dataset, discarding observations where the deceased individual was not killed by police or by suicide, but only in the presence of a police officer. For example, the death recorded by Unique ID 31495 in the Fatal Encounters dataset resulted from a car accident that was witnessed by a police officer. This observation was filtered out from the cleaned dataset because the deceased was neither killed by a police officer nor a victim of suicide.
 
 This dataset has 12 variables, including a unique ID for each observation (uid). The variables are listed in the table below.
 
-| Category | Type      | Name            | Description |
-|----------|-----------|-----------------|-------------|
-| Victim   | Character | name            |             |
-| Victim   | Integer   | age             |             |
-| Victim   | Character | gender          |             |
-| Victim   | Character | race            |             |
-| Incident | Character | date            |             |
-| Location | Character | city            |             |
-| Location | Character | state           |             |
-| Incident | Character | manner_of_death |             |
-| Incident | Character | armed           |             |
-| Incident | Logical   | mental_illness  |             |
-| Incident | Logical   | flee            |             |
+| Category |   Type    |      Name       |                           Description                            |
+|:--------:|:---------:|:---------------:|:----------------------------------------------------------------:|
+|  Victim  | Character |      name       |                                \-                                |
+|  Victim  |  Integer  |       age       |                                \-                                |
+|  Victim  | Character |     gender      |                                \-                                |
+|  Victim  | Character |      race       |                                \-                                |
+| Incident | Character |      date       |                                \-                                |
+| Location | Character |      city       |                                \-                                |
+| Location | Character |      state      |                                \-                                |
+| Incident | Character | manner_of_death |                                                                  |
+| Incident | Character |      armed      |   What weapon, if any, the individual was carrying (e.g. gun)    |
+| Incident |  Logical  | mental_illness  | Whether the individual was displaying symptoms of mental illness |
+| Incident |  Logical  |      flee       |    Whether the individual attempted to flee the altercaation     |
 
-The variables name, age, gender, and race describe attributes of the deceased. Date, city, and state describe the location and time of the altercation. Manner_of_death indicates whether the individual died by being shot, tasered, both, or some other method. Armed represents what weapon, if any, the individual was carrying, whether a gun, knife, or some other weapon. Mental_illness indicates whether the individual was mentally ill and flee indicates whether the individual attempted to flee the altercation. This cleaned dataset removed some supplemental details from the Fatal Encounter dataset, such as the address of incident, the corresponding latitude and longitude, the agencies involved, and a description of the incident.
+This cleaned dataset removed some supplemental details from the Fatal Encounter dataset, such as the address of incident, the corresponding latitude and longitude, the agencies involved, and a description of the incident.
 
 ### U.S. Cities Demographic Dataset
 
