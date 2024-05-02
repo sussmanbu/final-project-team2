@@ -3,26 +3,41 @@ title: Analysis
 description: Here we provide a detailed analysis using more sophisticated statistics techniques.
 toc: true
 draft: false
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
 
 This comes from the file `analysis.qmd`.
 
-We describe here our detailed data analysis. This page will provide an overview of what questions you addressed, illustrations of relevant aspects of the data with tables and figures, and a statistical model that attempts to answer part of the question. You'll also reflect on next steps and further analysis.
+We describe here our detailed data analysis. This page will provide an
+overview of what questions you addressed, illustrations of relevant
+aspects of the data with tables and figures, and a statistical model
+that attempts to answer part of the question. You'll also reflect on
+next steps and further analysis.
 
-The audience for this page is someone like your class mates, so you can expect that they have some level of statistical and quantitative sophistication and understand ideas like linear and logistic regression, coefficients, confidence intervals, overfitting, etc. 
+The audience for this page is someone like your class mates, so you can
+expect that they have some level of statistical and quantitative
+sophistication and understand ideas like linear and logistic regression,
+coefficients, confidence intervals, overfitting, etc.
 
-While the exact number of figures and tables will vary and depend on your analysis, you should target around 5 to 6. An overly long analysis could lead to losing points.
-If you want you can link back to your blog posts or create separate pages with more details.
+While the exact number of figures and tables will vary and depend on
+your analysis, you should target around 5 to 6. An overly long analysis
+could lead to losing points. If you want you can link back to your blog
+posts or create separate pages with more details.
 
-The style of this paper should aim to be that of an academic paper. 
-I don't expect this to be of publication quality but you should keep that aim in mind.
-Avoid using "we" too frequently, for example "We also found that ...". Describe your methodology and your findings but don't describe your whole process.
+The style of this paper should aim to be that of an academic paper. I
+don't expect this to be of publication quality but you should keep that
+aim in mind. Avoid using "we" too frequently, for example "We also found
+that ...". Describe your methodology and your findings but don't
+describe your whole process.
 
 ### Example of loading data
 
-The code below shows an example of loading the loan refusal data set (which you should delete at some point).
+The code below shows an example of loading the loan refusal data set
+(which you should delete at some point).
 
 ```{r}
 # library(tidyverse)
@@ -32,47 +47,81 @@ The code below shows an example of loading the loan refusal data set (which you 
 # print(ls())
 ```
 
-
-
 ------------------------------------------------------------------------
 
-##Introduction
-In recent years, police-related fatalities have become a focal point of public and academic debate, underscoring critical concerns about racial disparities within law enforcement across the United States. This analysis seeks to explore the extent to which racial disparity, especially against Black individuals, contributes to the demographics of these fatalities. The urgency of this issue is amplified by ongoing societal calls for justice and reform, making it essential to understand the patterns and factors that drive these disparities.
+## Introduction 
 
-#Thesis Statement
-This research posits that racial disparity is a significant factor influencing the demographics of police-related fatalities, with Black individuals experiencing disproportionately high mortality rates in comparison to other races across various cities.
+In recent years, police-related fatalities have become a focal point of
+public and academic debate, underscoring critical concerns about racial
+disparities within law enforcement across the United States. This
+analysis seeks to explore the extent to which racial disparity,
+especially against Black individuals, contributes to the demographics of
+these fatalities. The urgency of this issue is amplified by ongoing
+societal calls for justice and reform, making it essential to understand
+the patterns and factors that drive these disparities.
 
-#Research Questions
-To provide a structured exploration of this issue, this analysis will address the following key questions:
+#Thesis Statement This research posits that racial disparity is a
+significant factor influencing the demographics of police-related
+fatalities, with Black individuals experiencing disproportionately high
+mortality rates in comparison to other races across various cities.
 
-i. How do mortality rates from police-related fatalities among Black individuals compare to those of other races across different cities?
+### Research Questions 
 
-ii. What factors might contribute to any observed disparities in these mortality rates?
+To provide a structured exploration of this issue, this analysis will
+address the following key questions:
 
-iii. Are there specific geographic or demographic contexts in which these disparities are more pronounced?
+i.  How do mortality rates from police-related fatalities among Black
+    individuals compare to those of other races across different cities?
 
-#Significance of the Analysis
-The findings of this analysis are intended to contribute to the broader dialogue on racial equity and law enforcement practices. By examining the intersection of race and police-related fatalities, this study aims to provide data-driven insights that could inform policy decisions and advocacy efforts aimed at reducing these disparities. Additionally, this analysis will serve as an educational resource for scholars, policymakers, and the public, fostering a deeper understanding of how racial dynamics shape outcomes in law enforcement encounters.
+ii. What factors might contribute to any observed disparities in these
+    mortality rates?
 
-Through a combination of quantitative methods and statistical modeling, this analysis page will offer a detailed examination of the available data, aiming to present a clear and comprehensive picture of how race influences the risk of fatality in police interactions. The next sections will describe the data used for this analysis, the methodology employed, and the results obtained,thereby framing the context for a rigorous discussion on this critical social issue.
+iii. Are there specific geographic or demographic contexts in which
+     these disparities are more pronounced?
 
-##Data Description
+### Significance of the Analysis 
+
+The findings of this analysis are intended to contribute to the broader
+dialogue on racial equity and law enforcement practices. By examining
+the intersection of race and police-related fatalities, this study aims
+to provide data-driven insights that could inform policy decisions and
+advocacy efforts aimed at reducing these disparities. Additionally, this
+analysis will serve as an educational resource for scholars,
+policymakers, and the public, fostering a deeper understanding of how
+racial dynamics shape outcomes in law enforcement encounters.
+
+Through a combination of quantitative methods and statistical modeling,
+this analysis page will offer a detailed examination of the available
+data, aiming to present a clear and comprehensive picture of how race
+influences the risk of fatality in police interactions. The next
+sections will describe the data used for this analysis, the methodology
+employed, and the results obtained,thereby framing the context for a
+rigorous discussion on this critical social issue.
+
+## Data Description 
+
 This analysis leverages two key datasets:
 
 Police Fatality Dataset & U.S. Cities Demographic Dataset
 
 To load the dataset, run the attached R script "combining-datasets.R".
+
 ```{r message=FALSE, warning=FALSE}
 source("combining-datasets.R")
 rm(police_f,us_dem,us_dem_wid)
 ```
-After running this R script, the two datasets we used will be merged, cleared and loaded into your environment called police_dem.
-For more information on these two datasets and merging process, see the data page. 
-[data page](https://sussmanbu.github.io/final-project-team2/data.html).
 
-##Exploratory Data Analysis (EDA)
+After running this R script, the two datasets we used will be merged,
+cleared and loaded into your environment called police_dem. For more
+information on these two datasets and merging process, see the data
+page. [data
+page](https://sussmanbu.github.io/final-project-team2/data.html).
 
-Started by exploring the distribution of police-related fatalities by race.
+## Exploratory Data Analysis (EDA)
+
+Started by exploring the distribution of police-related fatalities by
+race.
+
 ```{r}
 fatalities_by_race <- police_dem |>
   group_by(Race) |>
@@ -88,9 +137,16 @@ ggplot(fatalities_by_race, aes(x = reorder(Race, -Fatalities), y = Fatalities, f
   ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
-As expected, the highest number of deaths occurred among blacks or African Americans.
 
-The next step is to compare this with demographic data, and it would be interesting to examine the relationship between each racial group's percentage of total deaths and their percentage of the total population of the sampled city. This would help to determine how specific racial groups are disproportionately affected.
+As expected, the highest number of deaths occurred among blacks or
+African Americans.
+
+The next step is to compare this with demographic data, and it would be
+interesting to examine the relationship between each racial group's
+percentage of total deaths and their percentage of the total population
+of the sampled city. This would help to determine how specific racial
+groups are disproportionately affected.
+
 ```{r}
 fatalities_by_race_city_state <- police_dem |>
   group_by(State, City, Race) |>
@@ -119,7 +175,6 @@ comparison_df <-
 
 ```
 
-
 ```{r}
 sum_df<- comparison_df|>
   group_by(Race)|>
@@ -146,11 +201,11 @@ ggplot(sum_df, aes(x = Type, y = Percentage, fill = Type)) +
 
 
 ```
+
 ```{r, message=FALSE, warning=FALSE}
 library(tidycensus)
 library(sf)
 ```
-
 
 ```{r, message=FALSE, warning=FALSE}
 states_sf <- get_decennial(geography = "state", 
@@ -194,9 +249,13 @@ state_data_sf %>%
   coord_sf(xlim = c(-125, -67), ylim = c(24, 50), expand = FALSE)
 
 ```
-As shown in the graph, both White and Hispanic has a smaller police fatality rate comparing to the population percentage. However, for Blan or African-American, there is a higher police fatality rate than the population percentage comparing to other races.
 
-##Modelling 
+As shown in the graph, both White and Hispanic has a smaller police
+fatality rate comparing to the population percentage. However, for Blan
+or African-American, there is a higher police fatality rate than the
+population percentage comparing to other races.
+
+## Modelling
 
 ```{r}
 model_data<- police_dem|>
@@ -218,6 +277,7 @@ model_data <- na.omit(model_data)
 print(model_data)
 write.csv(model_data, "model_data.csv", row.names = FALSE)
 ```
+
 ```{r}
 # Loading necessary libraries
 library(dplyr)
@@ -271,7 +331,11 @@ rf_tuned <- train(X_train, y_train, method="rf", trControl=trainControl(method="
 print(rf_tuned)
 
 ```
-According to this result, it is shown that the third model, GBM (Gradient Boosting Model) has the highest R2 value and lowest MSE, which make this model the optimal choice for our research, now we will refine and improve this model.
+
+According to this result, it is shown that the third model, GBM
+(Gradient Boosting Model) has the highest R2 value and lowest MSE, which
+make this model the optimal choice for our research, now we will refine
+and improve this model.
 
 ```{r}
 # Loading necessary libraries
@@ -322,8 +386,15 @@ ggplot(importance_df, aes(x=reorder(Feature, Relative_Influence), y=Relative_Inf
   labs(title="Relative Influence of Features", x="Features", y="Relative Influence")
 
 ```
-As we can see in the chart, Black has the lowest relative influence on the prediction, which may contradict our findings. However, there are a few explanations: "Influence" reflects how much each feature contributes to the model's predictive power, but might not directly correlate with a feature's impact in the real world. Complex interactions between demographics and fatalities might not align directly with simple correlations. Which means there are still more work need to be done in order to prefectly predict with this model.
 
+As we can see in the chart, Black has the lowest relative influence on
+the prediction, which may contradict our findings. However, there are a
+few explanations: "Influence" reflects how much each feature contributes
+to the model's predictive power, but might not directly correlate with a
+feature's impact in the real world. Complex interactions between
+demographics and fatalities might not align directly with simple
+correlations. Which means there are still more work need to be done in
+order to prefectly predict with this model.
 
 ```{r}
 # Convert all columns except 'City' to numeric
@@ -341,9 +412,14 @@ cor_black_fatalities <- cor.test(model_data$Fatalities, model_data$Black.or.Afri
 print(cor_black_fatalities)
 ```
 
-
-According to the summarization above, the correlation analysis reveals a moderate positive relationship between the "Black or African-American" demographic and fatality rates, with a correlation of 0.35 and a p-value indicating statistical significance. This suggests that as the percentage of this demographic increases, fatality rates tend to increase as well. However, the "Hispanic or Latino" demographic shows a higher correlation with fatalities, at 0.65. The feature importance results from the GBM model reflect these relationships, with "Black or African-American" ranking fourth in influence. These findings offer insights into how different demographic features contribute to predicting fatality rates.
-
-
-
-
+According to the summarization above, the correlation analysis reveals a
+moderate positive relationship between the "Black or African-American"
+demographic and fatality rates, with a correlation of 0.35 and a p-value
+indicating statistical significance. This suggests that as the
+percentage of this demographic increases, fatality rates tend to
+increase as well. However, the "Hispanic or Latino" demographic shows a
+higher correlation with fatalities, at 0.65. The feature importance
+results from the GBM model reflect these relationships, with "Black or
+African-American" ranking fourth in influence. These findings offer
+insights into how different demographic features contribute to
+predicting fatality rates.
