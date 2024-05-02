@@ -53,7 +53,22 @@ This cleaned dataset removed some supplemental details from the Fatal Encounter 
 
 ### U.S. Cities Demographic Dataset
 
-We supplemented our police fatality dataset by joining it with a [U.S. cities demographic dataset](https://public.opendatasoft.com/explore/dataset/us-cities-demographics/information/). This demographic dataset was sourced from the U.S. Census Bureau's 2015 American Community Survey and posted to the opendatasoft site by the U.S. Census Bureau. U.S. cities with populations greater than or equal to 65,000 are included in this dataset. There are 12 variables, which cover location, age, sex, and race, among other subjects. The variables City, State, and State Code describe location. Many of the variables are self-explanatory: Total Population, Male Population, Female Population, Number of Veterans, Median Age, and Average Household Size. Foreign-born provides a count of the number of individuals not born in the U.S. The variables Race and Count are connected, with Count describing the number of individuals of a certain race. There are multiple observations per City, each with a different Race and Count.
+We supplemented our police fatality dataset by joining it with a [U.S. cities demographic dataset](https://public.opendatasoft.com/explore/dataset/us-cities-demographics/information/). This demographic dataset was sourced from the U.S. Census Bureau's 2015 American Community Survey and posted to the opendatasoft site by the U.S. Census Bureau. U.S. cities with populations greater than or equal to 65,000 are included in this dataset. This dataset has 12 variables, all listed in the table below. The variables Race and Count are connected, with Count describing the number of individuals of a certain race. There are multiple observations per City, each with a different Race and Count.
+
+|  Category   |   Type    |          Name          |               Description                |
+|:-----------:|:---------:|:----------------------:|:----------------------------------------:|
+|  Location   | Character |          City          |                    \-                    |
+|  Location   | Character |         State          |                    \-                    |
+| Demographic | Character |          Race          |                    \-                    |
+| Demographic |  Integer  |         Count          | Number of individuals of a certain race  |
+| Demographic |  Integer  |       Median Age       |                    \-                    |
+| Demographic |  Integer  |    Male Population     |                    \-                    |
+| Demographic |  Integer  |   Female Population    |                    \-                    |
+| Demographic |  Integer  |    Total Population    |                    \-                    |
+| Demographic |  Integer  |   Number of Veterans   |                    \-                    |
+| Demographic |  Integer  |      Foreign-born      |    Number of foreign-born individuals    |
+| Demographic |  Numeric  | Average Household Size |                    \-                    |
+|  Location   | Character |       State Code       |        Abbreviation of state name        |
 
 ## Cleaning
 
