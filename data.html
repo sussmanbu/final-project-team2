@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -148,14 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-makes-a-good-data-set" id="toc-what-makes-a-good-data-set" class="nav-link active" data-scroll-target="#what-makes-a-good-data-set">What makes a good data set?</a></li>
-  <li><a href="#where-to-keep-data" id="toc-where-to-keep-data" class="nav-link" data-scroll-target="#where-to-keep-data">Where to keep data?</a>
-  <ul class="collapse">
-  <li><a href="#sharing-your-data" id="toc-sharing-your-data" class="nav-link" data-scroll-target="#sharing-your-data">Sharing your data</a></li>
-  <li><a href="#load-and-clean-data-script" id="toc-load-and-clean-data-script" class="nav-link" data-scroll-target="#load-and-clean-data-script">Load and clean data script</a></li>
-  </ul></li>
-  <li><a href="#rubric-on-this-page" id="toc-rubric-on-this-page" class="nav-link" data-scroll-target="#rubric-on-this-page">Rubric: On this page</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a>
   <ul class="collapse">
   <li><a href="#police-fatality-dataset" id="toc-police-fatality-dataset" class="nav-link" data-scroll-target="#police-fatality-dataset">Police Fatality Dataset</a></li>
   <li><a href="#u.s.-cities-demographic-dataset" id="toc-u.s.-cities-demographic-dataset" class="nav-link" data-scroll-target="#u.s.-cities-demographic-dataset">U.S. Cities Demographic Dataset</a></li>
@@ -189,113 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p><img src="images/data-import-cheatsheet-thumbs.png" class="img-fluid"></p>
-<p>This comes from the file <code>data.qmd</code>.</p>
-<p>Your first steps in this project will be to find data to work on.</p>
-<p>I recommend trying to find data that interests you and that you are knowledgeable about. A bad example would be if you have no interest in video games but your data set is about video games. I also recommend finding data that is related to current events, social justice, and other areas that have an impact.</p>
-<p>Initially, you will study <em>one dataset</em> but later you will need to combine that data with another dataset. For this reason, I recommend finding data that has some date and/or location components. These types of data are conducive to interesting visualizations and analysis and you can also combine this data with other data that also has a date or location variable. Data from the census, weather data, economic data, are all relatively easy to combine with other data with time/location components.</p>
-<section id="what-makes-a-good-data-set" class="level2">
-<h2 class="anchored" data-anchor-id="what-makes-a-good-data-set">What makes a good data set?</h2>
-<ul>
-<li>Data you are interested in and care about.</li>
-<li>Data where there are a lot of potential questions that you can explore.</li>
-<li>A data set that isn’t completely cleaned already.</li>
-<li>Multiple sources for data that you can combine.</li>
-<li>Some type of time and/or location component.</li>
-</ul>
-</section>
-<section id="where-to-keep-data" class="level2">
-<h2 class="anchored" data-anchor-id="where-to-keep-data">Where to keep data?</h2>
-<p>Below 50mb: In <code>dataset</code> folder</p>
-<p>Above 50mb: In <code>dataset_ignore</code> folder. This folder will be ignored by <code>git</code> so you’ll have to manually sync these files across your team.</p>
-<section id="sharing-your-data" class="level3">
-<h3 class="anchored" data-anchor-id="sharing-your-data">Sharing your data</h3>
-<p>For small datasets (&lt;50mb), you can use the <code>dataset</code> folder that is tracked by github. Add the files just like you would any other file.</p>
-<p>If you create a folder named <code>data</code> this will cause problems.</p>
-<p>For larger datasets, you’ll need to create a new folder in the project root directory named <code>dataset-ignore</code>. This will be ignored by git (based off the <code>.gitignore</code> file in the project root directory) which will help you avoid issues with Github’s size limits. Your team will have to manually make sure the data files in <code>dataset-ignore</code> are synced across team members.</p>
-<p>Your <a href="./scripts/load_and_clean_data.R">load_and_clean_data.R</a> file is how you will load and clean your data. Here is a an example of a very simple one.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scripts/load_and_clean_data.R"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span> <span class="co"># Use echo=FALSE or omit it to avoid code output  </span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&gt; library(tidyverse)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&gt; loan_data &lt;- read_csv(here::here("dataset", "loan_refusal.csv"))</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 20 Columns: 5
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): bank
-dbl (4): min, white, himin, hiwhite
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-&gt; loan_data_clean &lt;- loan_data
-
-&gt; write_csv(loan_data_clean, file = here::here("dataset", 
-+     "loan_refusal_clean.csv"))
-
-&gt; save(loan_data_clean, file = here::here("dataset/loan_refusal.RData"))</code></pre>
-</div>
-</div>
-<p>You should never use absolute paths (eg. <code>/Users/danielsussman/path/to/project/</code> or <code>C:\MA415\\Final_Project\</code>).</p>
-<p>You might consider using the <code>here</code> function from the <a href="https://here.r-lib.org/articles/here.html"><code>here</code> package</a> to avoid path problems.</p>
-</section>
-<section id="load-and-clean-data-script" class="level3">
-<h3 class="anchored" data-anchor-id="load-and-clean-data-script">Load and clean data script</h3>
-<p>The idea behind this file is that someone coming to your website could largely replicate your analyses after running this script on the original data sets to clean them. This file might create a derivative data set that you then use for your subsequent analysis. Note that you don’t need to run this script from every post/page. Instead, you can load in the results of this script, which could be plain text files or <code>.RData</code> files. In your data page you’ll describe how these results were created. If you have a very large data set, you might save smaller data sets that you can use for exploration purposes. To link to this file, you can use <code>[cleaning script](/scripts/load_and_clean_data.R)</code> wich appears as <a href="./scripts/load_and_clean_data.R">cleaning script</a>.</p>
-<hr>
-</section>
-</section>
-<section id="rubric-on-this-page" class="level2">
-<h2 class="anchored" data-anchor-id="rubric-on-this-page">Rubric: On this page</h2>
-<p>You will</p>
-<ul>
-<li><p>Describe where/how to find data.</p>
-<ul>
-<li>You must include a link to the original data source(s). Make sure to provide attribution to those who collected the data.</li>
-<li>Why was the data collected/curated? Who put it together? (This is important, if you don’t know why it was collected then that might not be a good dataset to look at.</li>
-</ul></li>
-<li><p>Describe the different data files used and what each variable means.</p>
-<ul>
-<li>If you have many variables then only describe the most relevant ones and summarize the rest.</li>
-</ul></li>
-<li><p>Describe any cleaning you had to do for your data.</p>
-<ul>
-<li>You <em>must</em> include a link to your <code>load_and_clean_data.R</code> file.</li>
-<li>Rrename variables and recode factors to make data more clear.</li>
-<li>Also, describe any additional R packages you used outside of those covered in class.</li>
-<li>Describe and show code for how you combined multiple data files and any cleaning that was necessary for that.</li>
-<li>Some repetition of what you do in your <code>load_and_clean_data.R</code> file is fine and encouraged if it helps explain what you did.</li>
-</ul></li>
-<li><p>Organization, clarity, cleanliness of the page</p>
-<ul>
-<li>Make sure to remove excessive warnings, use clean easy-to-read code (without side scrolling), organize with sections, use bullets and other organization tools, etc.</li>
-<li>This page should be self-contained.</li>
-</ul></li>
-</ul>
-</section>
+<p><img src="images/data-pg-photo-crime-tape.jpeg" class="img-fluid"></p>
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <section id="police-fatality-dataset" class="level3">
@@ -303,10 +156,10 @@ dbl (4): min, white, himin, hiwhite
 <p>The source of the original dataset is Fatal Encounters, a blog created by Dr.&nbsp;Brian Burghart, a journalist and part-time researcher for the University of Southern California. Dr.&nbsp;Burghart and his associates compiled media reports and police records to create the database. The data represents deaths that occurred when police were present or were caused by police, including “on-duty, off-duty, criminal, line-of-duty, local, federal, intentional, [and] accidental.” The goal of Fatal Encounters is to create a national database that anyone can use for whatever purpose. This dataset has 36 variables, though a few are redundant, such as Unique ID and Unique identifier (redundant), or temporary. Some of the main variables are listed in the table below. Many of the variables are self-evident and therefore are lacking a description.</p>
 <table class="table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 36%">
-<col style="width: 36%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 28%">
+<col style="width: 57%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -412,93 +265,189 @@ dbl (4): min, white, himin, hiwhite
 <p>The <a href="https://data.world/awram/us-police-involved-fatalities">cleaned dataset</a> was posted by Chris Awram to the data.world site. He cleaned the Fatal Encounters dataset and combined it with additional data from <a href="https://www.gunviolencearchive.org/">Gun Violence Archive</a> and <a href="https://data.world/data-society/fatal-police-shootings">Data Society</a>, which sourced its data from the <a href="https://github.com/washingtonpost/data-police-shootings">Washington Post</a>. The purpose of this cleaned dataset was to shed light on altercations with the police in which individuals were killed. This dataset subsets the Fatal Encounters dataset, discarding observations where the deceased individual was not killed by police or by suicide, but only in the presence of a police officer. For example, the death recorded by Unique ID 31495 in the Fatal Encounters dataset resulted from a car accident that was witnessed by a police officer. This observation was filtered out from the cleaned dataset because the deceased was neither killed by a police officer nor a victim of suicide.</p>
 <p>This dataset has 12 variables, including a unique ID for each observation (uid). The variables are listed in the table below.</p>
 <table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 63%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Category</th>
-<th>Type</th>
-<th>Name</th>
-<th>Description</th>
+<th style="text-align: center;">Category</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Name</th>
+<th style="text-align: center;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Victim</td>
-<td>Character</td>
-<td>name</td>
-<td></td>
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">name</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="even">
-<td>Victim</td>
-<td>Integer</td>
-<td>age</td>
-<td></td>
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">age</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="odd">
-<td>Victim</td>
-<td>Character</td>
-<td>gender</td>
-<td></td>
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">gender</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="even">
-<td>Victim</td>
-<td>Character</td>
-<td>race</td>
-<td></td>
+<td style="text-align: center;">Victim</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">race</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="odd">
-<td>Incident</td>
-<td>Character</td>
-<td>date</td>
-<td></td>
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">date</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="even">
-<td>Location</td>
-<td>Character</td>
-<td>city</td>
-<td></td>
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">city</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="odd">
-<td>Location</td>
-<td>Character</td>
-<td>state</td>
-<td></td>
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">state</td>
+<td style="text-align: center;">-</td>
 </tr>
 <tr class="even">
-<td>Incident</td>
-<td>Character</td>
-<td>manner_of_death</td>
-<td></td>
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">manner_of_death</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Incident</td>
-<td>Character</td>
-<td>armed</td>
-<td></td>
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">armed</td>
+<td style="text-align: center;">What weapon, if any, the individual was carrying (e.g.&nbsp;gun)</td>
 </tr>
 <tr class="even">
-<td>Incident</td>
-<td>Logical</td>
-<td>mental_illness</td>
-<td></td>
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Logical</td>
+<td style="text-align: center;">mental_illness</td>
+<td style="text-align: center;">Whether the individual was displaying symptoms of mental illness</td>
 </tr>
 <tr class="odd">
-<td>Incident</td>
-<td>Logical</td>
-<td>flee</td>
-<td></td>
+<td style="text-align: center;">Incident</td>
+<td style="text-align: center;">Logical</td>
+<td style="text-align: center;">flee</td>
+<td style="text-align: center;">Whether the individual attempted to flee the altercaation</td>
 </tr>
 </tbody>
 </table>
-<p>The variables name, age, gender, and race describe attributes of the deceased. Date, city, and state describe the location and time of the altercation. Manner_of_death indicates whether the individual died by being shot, tasered, both, or some other method. Armed represents what weapon, if any, the individual was carrying, whether a gun, knife, or some other weapon. Mental_illness indicates whether the individual was mentally ill and flee indicates whether the individual attempted to flee the altercation. This cleaned dataset removed some supplemental details from the Fatal Encounter dataset, such as the address of incident, the corresponding latitude and longitude, the agencies involved, and a description of the incident.</p>
+<p>This cleaned dataset removed some supplemental details from the Fatal Encounter dataset, such as the address of incident, the corresponding latitude and longitude, the agencies involved, and a description of the incident.</p>
 </section>
 <section id="u.s.-cities-demographic-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="u.s.-cities-demographic-dataset">U.S. Cities Demographic Dataset</h3>
-<p>We supplemented our police fatality dataset by joining it with a <a href="https://public.opendatasoft.com/explore/dataset/us-cities-demographics/information/">U.S. cities demographic dataset</a>. This demographic dataset was sourced from the U.S. Census Bureau’s 2015 American Community Survey and posted to the opendatasoft site by the U.S. Census Bureau. U.S. cities with populations greater than or equal to 65,000 are included in this dataset. There are 12 variables, which cover location, age, sex, and race, among other subjects. The variables City, State, and State Code describe location. Many of the variables are self-explanatory: Total Population, Male Population, Female Population, Number of Veterans, Median Age, and Average Household Size. Foreign-born provides a count of the number of individuals not born in the U.S. The variables Race and Count are connected, with Count describing the number of individuals of a certain race. There are multiple observations per City, each with a different Race and Count.</p>
+<p>We supplemented our police fatality dataset by joining it with a <a href="https://public.opendatasoft.com/explore/dataset/us-cities-demographics/information/">U.S. cities demographic dataset</a>. This demographic dataset was sourced from the U.S. Census Bureau’s 2015 American Community Survey and posted to the opendatasoft site by the U.S. Census Bureau. U.S. cities with populations greater than or equal to 65,000 are included in this dataset. This dataset has 12 variables, all listed in the table below. The variables Race and Count are connected, with Count describing the number of individuals of a certain race. There are multiple observations per City, each with a different Race and Count.</p>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 12%">
+<col style="width: 26%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Category</th>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Name</th>
+<th style="text-align: center;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">City</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">State</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">Race</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Count</td>
+<td style="text-align: center;">Number of individuals of a certain race</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Median Age</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Male Population</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Female Population</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Total Population</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Number of Veterans</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Integer</td>
+<td style="text-align: center;">Foreign-born</td>
+<td style="text-align: center;">Number of foreign-born individuals</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Demographic</td>
+<td style="text-align: center;">Numeric</td>
+<td style="text-align: center;">Average Household Size</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Location</td>
+<td style="text-align: center;">Character</td>
+<td style="text-align: center;">State Code</td>
+<td style="text-align: center;">Abbreviation of state name</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning">Cleaning</h2>
-<p>The police fatality dataset from data.world required no additional cleaning when first downloaded. Our process of loading the police fatality data can be found <a href="http://load_and_clean_data.r/">here</a>. Before we could combine datasets, we first needed to pivot the U.S. demographic dataset so that there was only one observation for each city. To do so, we used <code>pivot_longer</code> to change the Race variable into multiple Race variables (e.g.&nbsp;Asian, White), each with different values from Count. We then combined the police and demographic datasets by using <code>inner_join</code> with City as the primary key. We set the relationship to “many-to-many” so that fatalities from the same city all had the demographic data added. In the join, the State variables from each dataset got renamed to State.x and State.y. We used <code>select</code> to remove the redundant State.y variable and <code>rename</code> to rename State.x back to State. Some of the observations were missing Race values for the deceased individuals. As race is our main subject of interest, we removed these observations with <code>filter</code>. Our process of combining the datasets can be found <a href="http://combining-datasets.r/">here</a>.</p>
+<p>The police fatality dataset from data.world required no additional cleaning when first downloaded. Our process of loading the police fatality data can be found <a href="http://load_and_clean_data.r/">here</a>. Before we could combine datasets, we first needed to pivot the U.S. demographic dataset so that there was only one observation for each city. To do so, we used <code>pivot_longer</code> to change the Race variable into multiple Race variables (e.g.&nbsp;Asian, White), each with different values from Count. We originally joined the datasets using City as the primary key, but found issues as there are some cities with the same name but in different states. We then combined the police and demographic datasets by using <code>inner_join</code> with City as well as State Code. We set the relationship to “many-to-many” so that fatalities from the same city all had the demographic data added. As we were looking over the data, we noticed that some observations were of the same individual, but with slightly different information concerning the fatal incident. For example, two observations with different unique IDs but with the same victim information (name, race, etc) and location might have conflicting information over whether the individual fled the altercation. We decided the remove all duplicated observations as we had no way of verifying which observation was accurate (e.g.&nbsp;whether the individual fled). We did this by first using <code>group_by(Name, City, State)</code> to group the same altercations and then using <code>filter</code> to remove groups with more than one observation. We also noticed that some of the observations were missing Race values for the deceased individuals. As race is our main subject of interest, we removed these observations with <code>filter</code>. Our process of combining the datasets can be found <a href="http://combining-datasets.r/">here</a>.</p>
 
 
 </section>
