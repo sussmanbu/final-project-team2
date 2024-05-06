@@ -1,6 +1,5 @@
 ---
 title: Analysis
-description: Here we provide a detailed analysis using more sophisticated statistics techniques.
 toc: true
 draft: false
 editor: 
@@ -8,7 +7,7 @@ editor:
     wrap: 72
 ---
 
-![](https://upload.wikimedia.org/wikipedia/commons/7/77/Pebbleswithquarzite.jpg)
+![](images/analysis.jpg)
 
 This comes from the file `analysis.qmd`.
 
