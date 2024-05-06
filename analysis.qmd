@@ -8,9 +8,6 @@ editor:
 ---
 
 ![](images/analysis.jpg)
-
-This comes from the file `analysis.qmd`.
-
 We describe here our detailed data analysis. This page will provide an
 overview of what questions you addressed, illustrations of relevant
 aspects of the data with tables and figures, and a statistical model
