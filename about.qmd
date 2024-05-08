@@ -11,8 +11,8 @@ about:
     #   text: LinkedIn
     #   href: https://linkedin.com
     - icon: github
-      text: Github
-      href: https://github.com/sussmanbu/
+      text: Here is our demo video
+      href: https://github.com/sussmanbu/final-project-team2/blob/main/Final_Project_Demo.mp4
 ---
 
 This is a website for the final project for MA\[46\]15 Data Science with R by Team TEAM 2. The members of this team are below.
